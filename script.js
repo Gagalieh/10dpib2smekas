@@ -1,74 +1,78 @@
-// Mengimpor Firestore SDK
+// Menghubungkan Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
-// Mendapatkan referensi ke Firestore
-const db = getFirestore();
+// Firebase Config
+const firebaseConfig = {
+    apiKey: "AIzaSyDHdq8NtG03ZON3ND6qWaHCuoOzFr7PIsU",
+    authDomain: "confessdata-a824c.firebaseapp.com",
+    projectId: "confessdata-a824c",
+    storageBucket: "confessdata-a824c.firebasestorage.app",
+    messagingSenderId: "1084283671185",
+    appId: "1:1084283671185:web:96223afcaad4b8175f2530",
+    measurementId: "G-7NHZ5GDTNT"
+};
 
-// Mendapatkan referensi ke koleksi "messages"
-const messagesRef = collection(db, "messages");
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-// Mendapatkan form dan tempat untuk menampilkan pesan
+// Fungsi untuk mengirim pesan confess ke Firebase
 const confessForm = document.getElementById("confessForm");
-const confessMessagesContainer = document.getElementById("confessMessages");
 
-// Fungsi untuk mengirimkan pesan ke Firestore
-async function sendMessage(sender, recipient, message) {
+confessForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const sender = e.target.sender.value;
+    const recipient = e.target.recipient.value;
+    const message = e.target.message.value;
+
     try {
-        // Menambahkan pesan baru ke Firestore
-        await addDoc(messagesRef, {
+        // Menambahkan pesan ke Firestore
+        const docRef = await addDoc(collection(db, "confessMessages"), {
             sender: sender,
             recipient: recipient,
             message: message,
-            timestamp: new Date() // Timestamp untuk pengurutan
+            timestamp: new Date()
         });
-        console.log("Pesan terkirim!");
-        // Memperbarui tampilan dengan pesan terbaru
-        displayMessages();
-    } catch (error) {
-        console.error("Error menambahkan pesan: ", error);
+        alert("Pesan berhasil dikirim!");
+        confessForm.reset();
+        loadConfessMessages(); // Memuat ulang pesan setelah mengirim
+    } catch (e) {
+        console.error("Error adding document: ", e);
     }
-}
-
-// Fungsi untuk menampilkan semua pesan yang ada di Firestore
-async function displayMessages() {
-    try {
-        // Mengambil semua pesan dari Firestore
-        const querySnapshot = await getDocs(messagesRef);
-        confessMessagesContainer.innerHTML = ''; // Mengosongkan kontainer sebelum menampilkan pesan baru
-        querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            const messageElement = document.createElement("div");
-            messageElement.classList.add("message");
-            messageElement.innerHTML = `
-                <p><strong>Pengirim:</strong> ${data.sender}</p>
-                <p><strong>Tujuan:</strong> ${data.recipient}</p>
-                <p><strong>Pesan:</strong> ${data.message}</p>
-                <p><small>Waktu: ${new Date(data.timestamp.seconds * 1000).toLocaleString()}</small></p>
-                <hr>
-            `;
-            confessMessagesContainer.appendChild(messageElement);
-        });
-    } catch (error) {
-        console.error("Error menampilkan pesan: ", error);
-    }
-}
-
-// Menangani pengiriman formulir confess
-confessForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const sender = document.getElementById("sender").value;
-    const recipient = document.getElementById("recipient").value;
-    const message = document.getElementById("message").value;
-
-    if (sender && recipient && message) {
-        sendMessage(sender, recipient, message);
-    } else {
-        alert("Semua kolom harus diisi!");
-    }
-
-    confessForm.reset(); // Reset form setelah pengiriman pesan
 });
 
-// Menampilkan pesan saat halaman pertama kali dimuat
-displayMessages();
+// Fungsi untuk menampilkan pesan yang telah dikirim
+const loadConfessMessages = async () => {
+    const messagesContainer = document.getElementById("confessMessages");
+    messagesContainer.innerHTML = ''; // Clear existing messages
+
+    const querySnapshot = await getDocs(collection(db, "confessMessages"));
+    querySnapshot.forEach((doc) => {
+        const messageData = doc.data();
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("message");
+        messageElement.innerHTML = `
+            <p><strong>${messageData.sender} untuk ${messageData.recipient}</strong></p>
+            <p>${messageData.message}</p>
+            <small>Di kirim pada: ${new Date(messageData.timestamp.seconds * 1000).toLocaleString()}</small>
+        `;
+        messagesContainer.appendChild(messageElement);
+    });
+};
+
+// Fungsi untuk toggle galeri album
+function toggleGallery() {
+    const galleryContainer = document.getElementById("gallery-container");
+    galleryContainer.classList.toggle("toggleable");
+}
+
+// Fungsi untuk toggle pesan
+function toggleMessages() {
+    const messagesContainer = document.getElementById("confessMessages");
+    messagesContainer.classList.toggle("toggleable");
+}
+
+// Memuat pesan confess pada saat halaman dimuat
+document.addEventListener("DOMContentLoaded", loadConfessMessages);
