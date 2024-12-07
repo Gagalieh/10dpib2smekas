@@ -1,23 +1,26 @@
-// Mengimpor Firestore dan db dari config.js
-import { db } from './config.js';
-import { collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+// Import fungsi-fungsi dari SDK Firebase yang diperlukan
+import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+import { app } from "./config.js";  // Mengimpor konfigurasi Firebase dari config.js
+
+// Inisialisasi Firestore menggunakan Firebase App yang sudah diinisialisasi
+const db = getFirestore(app);
 
 // Mendapatkan referensi ke koleksi "messages" di Firestore
 const messagesRef = collection(db, "messages");
 
-// Mendapatkan form dan kontainer untuk menampilkan pesan
+// Mendapatkan elemen form dan kontainer untuk menampilkan pesan
 const confessForm = document.getElementById("confessForm");
 const confessMessagesContainer = document.getElementById("confessMessages");
 
-// Fungsi untuk mengirim pesan ke Firestore
+// Fungsi untuk mengirim pesan
 async function sendMessage(sender, recipient, message) {
     try {
-        // Menambahkan pesan ke Firestore
+        // Menambahkan pesan baru ke Firestore
         await addDoc(messagesRef, {
             sender: sender,
             recipient: recipient,
             message: message,
-            timestamp: new Date() // Menambahkan timestamp agar pesan bisa diurutkan
+            timestamp: new Date() // Menambahkan timestamp agar bisa diurutkan
         });
         console.log("Pesan terkirim!");
         // Menampilkan pesan yang terkirim tanpa perlu me-reload halaman
@@ -27,7 +30,7 @@ async function sendMessage(sender, recipient, message) {
     }
 }
 
-// Fungsi untuk menampilkan semua pesan yang ada di Firestore
+// Fungsi untuk menampilkan semua pesan
 async function displayMessages() {
     try {
         // Mengambil semua pesan dari Firestore
@@ -51,23 +54,21 @@ async function displayMessages() {
     }
 }
 
-// Menangani pengiriman form Confess
+// Menangani pengiriman formulir
 confessForm.addEventListener("submit", (e) => {
-    e.preventDefault();  // Mencegah halaman reload saat form disubmit
+    e.preventDefault();
 
-    // Mengambil nilai dari form
     const sender = document.getElementById("sender").value;
     const recipient = document.getElementById("recipient").value;
     const message = document.getElementById("message").value;
 
-    // Cek apakah semua field diisi
     if (sender && recipient && message) {
-        sendMessage(sender, recipient, message);  // Kirim pesan
+        sendMessage(sender, recipient, message);
     } else {
-        alert("Semua kolom harus diisi!");  // Jika ada kolom yang kosong
+        alert("Semua kolom harus diisi!");
     }
 
-    confessForm.reset();  // Reset form setelah pengiriman pesan
+    confessForm.reset(); // Reset form setelah pengiriman pesan
 });
 
 // Menampilkan pesan saat halaman pertama kali dimuat
