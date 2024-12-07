@@ -22,31 +22,24 @@
 
     <section id="gallery">
         <h2>Galeri</h2>
-        <div class="gallery">
-            <!-- Album 1 -->
+        <button class="toggle-button" onclick="toggleGallery()">Buka/Tutup Album</button>
+        <div class="gallery" id="gallery-container">
             <div class="album">
                 <h3>Album 1</h3>
                 <div class="gallery-item">
                     <img src="images/foto1.jpg" alt="Deskripsi Foto 1">
                 </div>
-                <div class="gallery-item">
-                    <img src="images/foto2.jpg" alt="Deskripsi Foto 2">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/foto3.jpg" alt="Deskripsi Foto 3">
-                </div>
             </div>
-            <!-- Album 2 -->
             <div class="album">
                 <h3>Album 2</h3>
                 <div class="gallery-item">
-                    <img src="images/foto4.jpg" alt="Deskripsi Foto 4">
+                    <img src="images/foto2.jpg" alt="Deskripsi Foto 2">
                 </div>
+            </div>
+            <div class="album">
+                <h3>Album 3</h3>
                 <div class="gallery-item">
-                    <img src="images/foto5.jpg" alt="Deskripsi Foto 5">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/foto6.jpg" alt="Deskripsi Foto 6">
+                    <img src="images/foto3.jpg" alt="Deskripsi Foto 3">
                 </div>
             </div>
         </div>
@@ -66,8 +59,9 @@
 
             <button type="submit">Kirim</button>
         </form>
-        <div id="confessMessages">
+        <div id="confessMessages" class="toggleable">
             <!-- Pesan confess akan ditampilkan di sini -->
+            <button class="toggle-button" onclick="toggleMessages()">Buka/Tutup Pesan</button>
         </div>
     </section>
 
@@ -77,7 +71,6 @@
         <ul>
             <li><strong>Ketua Kelas:</strong> Samuel Panji Truna Mahaja Surya Sata <a href="https://www.instagram.com/samuelpanji1">Instagram</a></li>
             <li><strong>Wakil Ketua Kelas:</strong> Aulia Pandu Eka Putri <a href="https://www.instagram.com/aullpoetr">Instagram</a></li>
-            <li><strong>Wali Kelas:</strong> Netty Tri Wahyuni <a href="#">Instagram</a></li>
         </ul>
     </section>
 
