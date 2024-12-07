@@ -6,6 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kelas 10 Desain Permodelan dan Informasi Bangunan</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Firebase CDN -->
+    <script type="module">
+        // Mengimpor fungsi Firebase yang diperlukan
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js';
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js';
+
+        // Konfigurasi Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCerjYAvrSiMNhcWUV9UMlnVRAKl_4bsG4",
+            authDomain: "confessdatabase.firebaseapp.com",
+            projectId: "confessdatabase",
+            storageBucket: "confessdatabase.appspot.com",
+            messagingSenderId: "310928401216",
+            appId: "1:310928401216:web:4be2fa651e75f20d5c10a5"
+        };
+
+        // Inisialisasi Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);  // Mengambil referensi ke Firestore
+    </script>
 </head>
 <body>
     <header>
@@ -63,7 +83,7 @@
         <ul>
             <li><strong>Ketua Kelas:</strong> Samuel Panji Truna Mahaja Surya Sata <a href="https://www.instagram.com/samuelpanji1">Instagram</a></li>
             <li><strong>Wakil Ketua Kelas:</strong> Aulia Pandu Eka Putri <a href="https://www.instagram.com/aullpoetr">Instagram</a></li>
-            <li><strong>Wali Kelas:</strong> Netty Tri Wahyuni <a href="#">Instagram</a></li>
+            <li><strong>Wali Kelas:</strong> Netty Tri Wahyuni</li>
         </ul>
     </section>
 
@@ -79,72 +99,7 @@
         <p>&copy; 2024 SMK Negeri 1 Kota Kediri. Semua hak dilindungi.</p>
     </footer>
 
-    <!-- Insert Firebase SDK and Configuration -->
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-          apiKey: "AIzaSyCerjYAvrSiMNhcWUV9UMlnVRAKl_4bsG4",
-          authDomain: "confessdatabase.firebaseapp.com",
-          projectId: "confessdatabase",
-          storageBucket: "confessdatabase.firebasestorage.app",
-          messagingSenderId: "310928401216",
-          appId: "1:310928401216:web:4be2fa651e75f20d5c10a5"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // Menambahkan pesan baru ke Firestore
-        const confessForm = document.getElementById('confessForm');
-        confessForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const sender = document.getElementById('sender').value;
-            const recipient = document.getElementById('recipient').value;
-            const message = document.getElementById('message').value;
-
-            try {
-                // Menambahkan pesan ke Firestore
-                await addDoc(collection(db, "confessMessages"), {
-                    sender: sender,
-                    recipient: recipient,
-                    message: message,
-                    timestamp: new Date()
-                });
-
-                // Mengosongkan form setelah pesan terkirim
-                confessForm.reset();
-                alert('Pesan berhasil terkirim!');
-            } catch (e) {
-                console.error("Error adding document: ", e);
-            }
-        });
-
-        // Menampilkan semua pesan yang ada di Firestore
-        const getMessages = async () => {
-            const querySnapshot = await getDocs(collection(db, "confessMessages"));
-            const messagesContainer = document.getElementById('confessMessages');
-            messagesContainer.innerHTML = ''; // Clear previous messages
-
-            querySnapshot.forEach((doc) => {
-                const data = doc.data();
-                const messageElement = document.createElement('div');
-                messageElement.innerHTML = `
-                    <p><strong>${data.sender} to ${data.recipient}:</strong> ${data.message}</p>
-                `;
-                messagesContainer.appendChild(messageElement);
-            });
-        };
-
-        // Menampilkan pesan saat halaman dimuat
-        window.onload = getMessages;
-    </script>
-
+    <!-- Menyertakan script.js untuk fungsionalitas -->
     <script src="script.js"></script>
 </body>
 </html>
