@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kelas 10 Desain Permodelan dan Informasi Bangunan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Kelas 10 Desain Permodelan dan Informasi Bangunan</h1>
+        <nav>
+            <ul>
+                <li><a href="#gallery">Galeri</a></li>
+                <li><a href="#confess">Confess</a></li>
+                <li><a href="#profile">Profil Kelas</a></li>
+                <li><a href="#news">Berita</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="gallery">
+        <h2>Galeri</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="images/foto1.jpg" alt="Deskripsi Foto 1">
+            </div>
+            <div class="gallery-item">
+                <img src="images/foto2.jpg" alt="Deskripsi Foto 2">
+            </div>
+            <div class="gallery-item">
+                <img src="images/foto3.jpg" alt="Deskripsi Foto 3">
+            </div>
+            <div class="gallery-item">
+                <img src="images/foto4.jpg" alt="Deskripsi Foto 4">
+            </div>
+        </div>
+    </section>
+
+    <section id="confess">
+        <h2>Confess Kelas Kami</h2>
+        <form id="confessForm">
+            <label for="sender">Pengirim:</label>
+            <input type="text" id="sender" name="sender" required>
+
+            <label for="recipient">Tujuan:</label>
+            <input type="text" id="recipient" name="recipient" required>
+
+            <label for="message">Pesan:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Kirim</button>
+        </form>
+        <div id="confessMessages">
+            <!-- Pesan confess akan ditampilkan di sini -->
+        </div>
+    </section>
+
+    <section id="profile">
+        <h2>Profil Kelas</h2>
+        <p>Berikut adalah struktur kelas 10 Desain Permodelan dan Informasi Bangunan:</p>
+        <ul>
+            <li><strong>Ketua Kelas:</strong> Samuel Panji Truna Mahaja Surya Sata <a href="https://www.instagram.com/samuelpanji1">Instagram</a></li>
+            <li><strong>Wakil Ketua Kelas:</strong> Aulia Pandu Eka Putri <a href="https://www.instagram.com/aullpoetr">Instagram</a></li>
+            <li><strong>Wali Kelas:</strong> Netty Tri Wahyuni <a href="#">Instagram</a></li>
+        </ul>
+    </section>
+
+    <section id="news">
+        <h2>Berita Kelas</h2>
+        <ul>
+            <li><a href="#">Berita 1</a></li>
+            <li><a href="#">Berita 2</a></li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 SMK Negeri 1 Kota Kediri. Semua hak dilindungi.</p>
+    </footer>
+
+    <!-- Insert Firebase SDK and Configuration -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyCerjYAvrSiMNhcWUV9UMlnVRAKl_4bsG4",
+          authDomain: "confessdatabase.firebaseapp.com",
+          projectId: "confessdatabase",
+          storageBucket: "confessdatabase.firebasestorage.app",
+          messagingSenderId: "310928401216",
+          appId: "1:310928401216:web:4be2fa651e75f20d5c10a5"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Menambahkan pesan baru ke Firestore
+        const confessForm = document.getElementById('confessForm');
+        confessForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const sender = document.getElementById('sender').value;
+            const recipient = document.getElementById('recipient').value;
+            const message = document.getElementById('message').value;
+
+            try {
+                // Menambahkan pesan ke Firestore
+                await addDoc(collection(db, "confessMessages"), {
+                    sender: sender,
+                    recipient: recipient,
+                    message: message,
+                    timestamp: new Date()
+                });
+
+                // Mengosongkan form setelah pesan terkirim
+                confessForm.reset();
+                alert('Pesan berhasil terkirim!');
+            } catch (e) {
+                console.error("Error adding document: ", e);
+            }
+        });
+
+        // Menampilkan semua pesan yang ada di Firestore
+        const getMessages = async () => {
+            const querySnapshot = await getDocs(collection(db, "confessMessages"));
+            const messagesContainer = document.getElementById('confessMessages');
+            messagesContainer.innerHTML = ''; // Clear previous messages
+
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                const messageElement = document.createElement('div');
+                messageElement.innerHTML = `
+                    <p><strong>${data.sender} to ${data.recipient}:</strong> ${data.message}</p>
+                `;
+                messagesContainer.appendChild(messageElement);
+            });
+        };
+
+        // Menampilkan pesan saat halaman dimuat
+        window.onload = getMessages;
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
