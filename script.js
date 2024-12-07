@@ -65,13 +65,13 @@ const loadConfessMessages = async () => {
 // Fungsi untuk toggle galeri album
 function toggleGallery() {
     const galleryContainer = document.getElementById("gallery-container");
-    galleryContainer.classList.toggle("toggleable");
+    galleryContainer.classList.toggle("hidden");
 }
 
 // Fungsi untuk toggle pesan
 function toggleMessages() {
     const messagesContainer = document.getElementById("confessMessages");
-    messagesContainer.classList.toggle("toggleable");
+    messagesContainer.classList.toggle("hidden");
 }
 
 // Memuat pesan confess pada saat halaman dimuat
