@@ -22,25 +22,19 @@
 
     <section id="gallery">
         <h2>Galeri</h2>
-        <button class="toggle-button" onclick="toggleGallery()">Buka/Tutup Album</button>
-        <div class="gallery" id="gallery-container">
-            <div class="album">
-                <h3>Album 1</h3>
-                <div class="gallery-item">
-                    <img src="images/foto1.jpg" alt="Deskripsi Foto 1">
-                </div>
+        <button onclick="toggleGallery()">Buka/Tutup Galeri</button>
+        <div id="gallery-container" class="toggleable">
+            <div class="gallery-item">
+                <img src="images/foto1.jpg" alt="Deskripsi Foto 1">
             </div>
-            <div class="album">
-                <h3>Album 2</h3>
-                <div class="gallery-item">
-                    <img src="images/foto2.jpg" alt="Deskripsi Foto 2">
-                </div>
+            <div class="gallery-item">
+                <img src="images/foto2.jpg" alt="Deskripsi Foto 2">
             </div>
-            <div class="album">
-                <h3>Album 3</h3>
-                <div class="gallery-item">
-                    <img src="images/foto3.jpg" alt="Deskripsi Foto 3">
-                </div>
+            <div class="gallery-item">
+                <img src="images/foto3.jpg" alt="Deskripsi Foto 3">
+            </div>
+            <div class="gallery-item">
+                <img src="images/foto4.jpg" alt="Deskripsi Foto 4">
             </div>
         </div>
     </section>
@@ -59,9 +53,9 @@
 
             <button type="submit">Kirim</button>
         </form>
-        <div id="confessMessages" class="toggleable">
+        <button onclick="toggleMessages()">Buka/Tutup Pesan</button>
+        <div id="confessMessages">
             <!-- Pesan confess akan ditampilkan di sini -->
-            <button class="toggle-button" onclick="toggleMessages()">Buka/Tutup Pesan</button>
         </div>
     </section>
 
@@ -69,8 +63,21 @@
         <h2>Profil Kelas</h2>
         <p>Berikut adalah struktur kelas 10 Desain Permodelan dan Informasi Bangunan:</p>
         <ul>
-            <li><strong>Ketua Kelas:</strong> Samuel Panji Truna Mahaja Surya Sata <a href="https://www.instagram.com/samuelpanji1">Instagram</a></li>
-            <li><strong>Wakil Ketua Kelas:</strong> Aulia Pandu Eka Putri <a href="https://www.instagram.com/aullpoetr">Instagram</a></li>
+            <li>
+                <strong>Ketua Kelas:</strong> Samuel Panji Truna Mahaja Surya Sata
+                <img src="images/samuel.jpg" alt="Foto Samuel" class="profile-photo">
+                <a href="https://www.instagram.com/samuelpanji1">Instagram</a>
+            </li>
+            <li>
+                <strong>Wakil Ketua Kelas:</strong> Aulia Pandu Eka Putri
+                <img src="images/aulia.jpg" alt="Foto Aulia" class="profile-photo">
+                <a href="https://www.instagram.com/aullpoetr">Instagram</a>
+            </li>
+            <li>
+                <strong>Wali Kelas:</strong> Netty Tri Wahyuni
+                <img src="images/netty.jpg" alt="Foto Netty" class="profile-photo">
+                <a href="#">Instagram</a>
+            </li>
         </ul>
     </section>
 
@@ -86,6 +93,10 @@
         <p>&copy; 2024 SMK Negeri 1 Kota Kediri. Semua hak dilindungi.</p>
     </footer>
 
+    <!-- Mengimpor Firebase Config -->
+    <script type="module" src="config.js"></script>
+    
+    <!-- Mengimpor JavaScript utama untuk menangani logika Confess -->
     <script src="script.js"></script>
 </body>
 </html>
