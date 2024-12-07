@@ -6,26 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kelas 10 Desain Permodelan dan Informasi Bangunan</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Firebase CDN -->
-    <script type="module">
-        // Mengimpor fungsi Firebase yang diperlukan
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js';
-        import { getFirestore } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js';
-
-        // Konfigurasi Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyCerjYAvrSiMNhcWUV9UMlnVRAKl_4bsG4",
-            authDomain: "confessdatabase.firebaseapp.com",
-            projectId: "confessdatabase",
-            storageBucket: "confessdatabase.appspot.com",
-            messagingSenderId: "310928401216",
-            appId: "1:310928401216:web:4be2fa651e75f20d5c10a5"
-        };
-
-        // Inisialisasi Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);  // Mengambil referensi ke Firestore
-    </script>
 </head>
 <body>
     <header>
@@ -83,7 +63,7 @@
         <ul>
             <li><strong>Ketua Kelas:</strong> Samuel Panji Truna Mahaja Surya Sata <a href="https://www.instagram.com/samuelpanji1">Instagram</a></li>
             <li><strong>Wakil Ketua Kelas:</strong> Aulia Pandu Eka Putri <a href="https://www.instagram.com/aullpoetr">Instagram</a></li>
-            <li><strong>Wali Kelas:</strong> Netty Tri Wahyuni</li>
+            <li><strong>Wali Kelas:</strong> Netty Tri Wahyuni <a href="#">Instagram</a></li>
         </ul>
     </section>
 
@@ -99,7 +79,10 @@
         <p>&copy; 2024 SMK Negeri 1 Kota Kediri. Semua hak dilindungi.</p>
     </footer>
 
-    <!-- Menyertakan script.js untuk fungsionalitas -->
-    <script src="script.js"></script>
+    <!-- Mengimpor Firebase Config (config.js) -->
+    <script type="module" src="config.js"></script>
+
+    <!-- Mengimpor JavaScript utama untuk menangani logika Confess (confess.js) -->
+    <script src="confess.js"></script>
 </body>
 </html>
