@@ -1,66 +1,61 @@
-// Pastikan Firebase SDK sudah diimport di index.html
-import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-
-// Menginisialisasi Firestore
-const db = getFirestore();
-
-// Referensi ke elemen form
-const confessForm = document.getElementById('confessForm');
-const confessMessagesContainer = document.getElementById('confessMessages');
-
-// Menambahkan pesan baru ke Firestore
-confessForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    // Mengambil data input dari form
-    const sender = document.getElementById('sender').value;
-    const recipient = document.getElementById('recipient').value;
-    const message = document.getElementById('message').value;
-
-    if (sender && recipient && message) {
-        try {
-            // Menyimpan pesan ke Firestore
-            await addDoc(collection(db, "messages"), {
-                sender: sender,
-                recipient: recipient,
-                message: message,
-                timestamp: new Date()  // Menyimpan waktu pesan
-            });
-            alert("Pesan berhasil dikirim!");
-            // Reset form setelah pesan dikirim
-            confessForm.reset();
-            loadMessages();  // Memuat ulang pesan setelah pengiriman
-        } catch (e) {
-            console.error("Error menambahkan dokumen: ", e);
-            alert("Terjadi kesalahan saat mengirim pesan.");
-        }
-    } else {
-        alert("Semua field harus diisi!");
-    }
-});
-
-// Memuat pesan dari Firestore
-async function loadMessages() {
-    try {
-        // Mendapatkan pesan dari Firestore
-        const querySnapshot = await getDocs(collection(db, "messages"));
-        confessMessagesContainer.innerHTML = ''; // Membersihkan pesan yang ada
-        querySnapshot.forEach((doc) => {
-            const messageData = doc.data();
-            // Menambahkan elemen baru untuk setiap pesan
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('confess-message');
-            messageElement.innerHTML = `
-                <strong>${messageData.sender}</strong> untuk <em>${messageData.recipient}</em><br>
-                <p>${messageData.message}</p>
-                <small>${new Date(messageData.timestamp.seconds * 1000).toLocaleString()}</small>
-            `;
-            confessMessagesContainer.appendChild(messageElement);
-        });
-    } catch (e) {
-        console.error("Error mengambil pesan: ", e);
-    }
-}
-
-// Memuat pesan saat halaman pertama kali dimuat
+man pertama kali dimuat
 window.onload = loadMessages;
+// Menunggu DOM siap
+document.addEventListener("DOMContentLoaded", function() {
+    // Menambahkan event listener untuk menu navigasi
+    const navLinks = document.querySelectorAll("nav a");
+    navLinks.forEach(link => {
+        link.addEventListener("click", function(event) {
+            // Menghentikan link default dan menampilkan bagian terkait
+            event.preventDefault();
+            const targetSection = document.querySelector(link.getAttribute("href"));
+            scrollToSection(targetSection);
+        });
+    });
+
+    // Fungsi untuk menggulir ke bagian tertentu secara mulus
+    function scrollToSection(section) {
+        section.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+
+    // Galeri gambar - Menangani klik gambar untuk memperbesar
+    const galleryItems = document.querySelectorAll(".gallery-item img");
+    galleryItems.forEach(item => {
+        item.addEventListener("click", function() {
+            const imageUrl = item.src;
+            openImageModal(imageUrl);
+        });
+    });
+
+    // Fungsi untuk menampilkan gambar dalam modal
+    function openImageModal(imageUrl) {
+        const modal = document.createElement("div");
+        modal.classList.add("modal");
+
+        const img = document.createElement("img");
+        img.src = imageUrl;
+        img.alt = "Gambar Besar";
+        
+        const closeButton = document.createElement("button");
+        closeButton.textContent = "Tutup";
+        closeButton.addEventListener("click", function() {
+            modal.remove();
+        });
+
+        modal.appendChild(img);
+        modal.appendChild(closeButton);
+        document.body.appendChild(modal);
+    }
+
+    // News section - Menambahkan event listener pada link berita
+    const newsLinks = document.querySelectorAll("#news a");
+    newsLinks.forEach(link => {
+        link.addEventListener("click", function(event) {
+            event.preventDefault();
+            alert("Fitur ini sedang dalam pengembangan.");
+        });
+    });
+});
