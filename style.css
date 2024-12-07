@@ -18,11 +18,12 @@ header {
     background: #333;
     color: white;
     text-align: center;
-    padding: 20px;
+    padding: 15px;
+    margin-bottom: 30px;
 }
 
 header h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     letter-spacing: 2px;
 }
 
@@ -68,12 +69,13 @@ header nav ul li a:hover {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
     justify-items: center;
+    padding: 20px;
 }
 
 .album {
     background-color: #fafafa;
     border-radius: 8px;
-    padding: 20px;
+    padding: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
 }
@@ -163,43 +165,28 @@ header nav ul li a:hover {
     background-color: #0097a7;
 }
 
-/* Berita dan Profil */
-#profile, #news {
-    background-color: #fff;
-    padding: 40px 20px;
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-#profile h2, #news h2 {
-    text-align: center;
-    font-size: 2rem;
-    color: #00bcd4;
-    margin-bottom: 20px;
-}
-
-#profile ul, #news ul {
-    list-style: none;
-    padding: 0;
-}
-
-#profile li, #news li {
+/* Button untuk buka tutup */
+.toggle-button {
+    background-color: #00bcd4;
+    color: white;
+    padding: 10px 20px;
+    border: none;
     font-size: 1.1rem;
-    margin-bottom: 10px;
+    margin: 10px auto;
+    display: block;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-#profile li a, #news li a {
-    color: #00bcd4;
-    text-decoration: none;
-    transition: color 0.3s;
+.toggle-button:hover {
+    background-color: #0097a7;
 }
 
-#profile li a:hover, #news li a:hover {
-    color: #007c8d;
+/* Pesan dan Galeri bisa ditutup */
+.toggleable {
+    display: none;
 }
 
-/* Footer */
 footer {
     background-color: #333;
     color: white;
