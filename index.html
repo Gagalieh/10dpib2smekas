@@ -22,8 +22,7 @@
 
     <section id="gallery">
         <h2>Galeri</h2>
-        <button onclick="toggleGallery()">Buka/Tutup Galeri</button>
-        <div id="gallery-container" class="toggleable">
+        <div class="gallery">
             <div class="gallery-item">
                 <img src="images/foto1.jpg" alt="Deskripsi Foto 1">
             </div>
@@ -53,7 +52,6 @@
 
             <button type="submit">Kirim</button>
         </form>
-        <button onclick="toggleMessages()">Buka/Tutup Pesan</button>
         <div id="confessMessages">
             <!-- Pesan confess akan ditampilkan di sini -->
         </div>
@@ -63,21 +61,9 @@
         <h2>Profil Kelas</h2>
         <p>Berikut adalah struktur kelas 10 Desain Permodelan dan Informasi Bangunan:</p>
         <ul>
-            <li>
-                <strong>Ketua Kelas:</strong> Samuel Panji Truna Mahaja Surya Sata
-                <img src="images/samuel.jpg" alt="Foto Samuel" class="profile-photo">
-                <a href="https://www.instagram.com/samuelpanji1">Instagram</a>
-            </li>
-            <li>
-                <strong>Wakil Ketua Kelas:</strong> Aulia Pandu Eka Putri
-                <img src="images/aulia.jpg" alt="Foto Aulia" class="profile-photo">
-                <a href="https://www.instagram.com/aullpoetr">Instagram</a>
-            </li>
-            <li>
-                <strong>Wali Kelas:</strong> Netty Tri Wahyuni
-                <img src="images/netty.jpg" alt="Foto Netty" class="profile-photo">
-                <a href="#">Instagram</a>
-            </li>
+            <li><strong>Ketua Kelas:</strong> Samuel Panji Truna Mahaja Surya Sata <a href="https://www.instagram.com/samuelpanji1">Instagram</a></li>
+            <li><strong>Wakil Ketua Kelas:</strong> Aulia Pandu Eka Putri <a href="https://www.instagram.com/aullpoetr">Instagram</a></li>
+            <li><strong>Wali Kelas:</strong> Netty Tri Wahyuni <a href="#">Instagram</a></li>
         </ul>
     </section>
 
@@ -95,8 +81,9 @@
 
     <!-- Mengimpor Firebase Config -->
     <script type="module" src="config.js"></script>
-    
     <!-- Mengimpor JavaScript utama untuk menangani logika Confess -->
-    <script src="script.js"></script>
+    <script type="module" src="confess.js"></script>
+    <!-- Mengimpor Script tambahan -->
+    <script type="module" src="script.js"></script>
 </body>
 </html>
