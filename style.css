@@ -1,196 +1,114 @@
-/* Reset beberapa styling default */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Body dan Font */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f8ff;
-    color: #333;
-    line-height: 1.6;
-}
-
-/* Header */
+/* Style untuk Header */
 header {
-    background: #333;
+    background-color: #3f51b5;
     color: white;
+    padding: 10px 0;
     text-align: center;
-    padding: 15px;
-    margin-bottom: 30px;
 }
 
 header h1 {
-    font-size: 2rem;
-    letter-spacing: 2px;
+    margin: 0;
+    font-size: 24px;
 }
 
-header nav ul {
+/* Navigasi */
+nav ul {
     list-style: none;
     padding: 0;
 }
 
-header nav ul li {
+nav ul li {
     display: inline;
     margin: 0 15px;
 }
 
-header nav ul li a {
-    color: #fff;
+nav ul li a {
+    color: white;
     text-decoration: none;
-    font-size: 1.1rem;
     font-weight: bold;
 }
 
-header nav ul li a:hover {
-    color: #00bcd4;
-}
-
 /* Galeri */
-#gallery {
-    background-color: #fff;
-    padding: 40px 20px;
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-#gallery h2 {
-    text-align: center;
-    color: #00bcd4;
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.gallery {
+#gallery-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    justify-items: center;
-    padding: 20px;
-}
-
-.album {
-    background-color: #fafafa;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-}
-
-.album:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.album h3 {
-    text-align: center;
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.gallery-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    height: 250px;
-    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
 }
 
 .gallery-item img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-    transition: transform 0.3s ease-in-out;
-}
-
-.gallery-item img:hover {
-    transform: scale(1.1);
-}
-
-/* Confess Form */
-#confess {
-    background-color: #fff;
-    padding: 40px 20px;
-    margin-top: 20px;
     border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-#confess h2 {
-    text-align: center;
-    color: #00bcd4;
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-#confessForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#confessForm label {
-    margin: 10px 0 5px;
-    font-size: 1.1rem;
-}
-
-#confessForm input,
-#confessForm textarea {
-    width: 80%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 2px solid #00bcd4;
-    border-radius: 5px;
-    font-size: 1rem;
-    color: #333;
-}
-
-#confessForm button {
-    padding: 12px 25px;
-    border: none;
-    background-color: #00bcd4;
-    color: white;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#confessForm button:hover {
-    background-color: #0097a7;
-}
-
-/* Button untuk buka tutup */
-.toggle-button {
-    background-color: #00bcd4;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    font-size: 1.1rem;
-    margin: 10px auto;
-    display: block;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.toggle-button:hover {
-    background-color: #0097a7;
-}
-
-/* Pesan dan Galeri bisa ditutup */
 .toggleable {
+    display: block;
+}
+
+.toggleable.hidden {
     display: none;
 }
 
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
+/* Struktur Kelas */
+#profile ul {
+    padding-left: 20px;
+}
+
+.profile-photo {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    border-radius: 50%;
+}
+
+#profile li {
+    margin-bottom: 20px;
+}
+
+/* Confess Section */
+#confess {
+    background-color: #f1f1f1;
+    padding: 20px;
     margin-top: 20px;
+}
+
+#confess form {
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #3f51b5;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #303f9f;
+}
+
+/* Pesan */
+#confessMessages .message {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #e3f2fd;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#confessMessages .message p {
+    margin: 5px 0;
 }
