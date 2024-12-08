@@ -24,28 +24,28 @@
         <h2>Galeri</h2>
         <div class="gallery">
             <div class="gallery-item">
-                <img src="images/foto1.jpg" alt="Deskripsi Foto 1" class="gallery-img">
+                <img src="images/foto1.jpg" alt="Deskripsi Foto 1" class="popup-image">
             </div>
             <div class="gallery-item">
-                <img src="images/foto2.jpg" alt="Deskripsi Foto 2" class="gallery-img">
+                <img src="images/foto2.jpg" alt="Deskripsi Foto 2" class="popup-image">
             </div>
             <div class="gallery-item">
-                <img src="images/foto3.jpg" alt="Deskripsi Foto 3" class="gallery-img">
+                <img src="images/foto3.jpg" alt="Deskripsi Foto 3" class="popup-image">
             </div>
             <div class="gallery-item">
-                <img src="images/foto4.jpg" alt="Deskripsi Foto 4" class="gallery-img">
+                <img src="images/foto4.jpg" alt="Deskripsi Foto 4" class="popup-image">
             </div>
             <div class="gallery-item">
-                <img src="images/foto5.jpg" alt="Deskripsi Foto 5" class="gallery-img">
+                <img src="images/foto5.jpg" alt="Deskripsi Foto 5" class="popup-image">
             </div>
             <div class="gallery-item">
-                <img src="images/foto6.jpg" alt="Deskripsi Foto 6" class="gallery-img">
+                <img src="images/foto6.jpg" alt="Deskripsi Foto 6" class="popup-image">
             </div>
             <div class="gallery-item">
-                <img src="images/foto7.jpg" alt="Deskripsi Foto 7" class="gallery-img">
+                <img src="images/foto7.jpg" alt="Deskripsi Foto 7" class="popup-image">
             </div>
             <div class="gallery-item">
-                <img src="images/foto8.jpg" alt="Deskripsi Foto 8" class="gallery-img">
+                <img src="images/foto8.jpg" alt="Deskripsi Foto 8" class="popup-image">
             </div>
         </div>
     </section>
@@ -74,8 +74,8 @@
             <li><strong>Ketua Kelas:</strong> Samuel Panji Truna Mahaja Surya Sata <a href="https://www.instagram.com/samuelpanji1">Instagram</a></li>
             <li><strong>Wakil Ketua Kelas:</strong> Aulia Pandu Eka Putri <a href="https://www.instagram.com/aullpoetr">Instagram</a></li>
             <li><strong>Wali Kelas:</strong> Netty Tri Wahyuni</li>
-            <li><strong>Part Of: <a href="https://smkn1kediri.sch.id/">SMKN 1 KEDIRI</a></li>
-            <li><strong>Akun Instagram : <a href="https://www.instagram.com/twodpib10.smeksa_?igsh=eXloMzd3ZGJpNGtx">Instagram</a></li>
+            <li><strong>Part Of: <a href="https://smkn1kediri.sch.id/">SMKN 1 KEDIRI</a></strong></li>
+            <li><strong>Akun Instagram : <a href="https://www.instagram.com/twodpib10.smeksa_?igsh=eXloMzd3ZGJpNGtx">Instagram</a></strong></li>
         </ul>
     </section>
 
@@ -84,13 +84,13 @@
         <ul>
             <li>
                 <div class="news-item">
-                    <img src="images/berita1.jpg" alt="Berita 1" class="news-image">
+                    <img src="images/berita1.jpg" alt="Berita 1" class="news-image popup-image">
                     <a href="#">Diduga karena losestreak, Likacuk teriak teriak</a>
                 </div>
             </li>
             <li>
                 <div class="news-item">
-                    <img src="images/berita2.jpg" alt="Berita 2" class="news-image">
+                    <img src="images/berita2.jpg" alt="Berita 2" class="news-image popup-image">
                     <a href="#">Ujian bengkel tanggal 10 jangan lupa belajar</a>
                 </div>
             </li>
@@ -108,10 +108,47 @@
     <!-- Mengimpor Script tambahan -->
     <script type="module" src="script.js"></script>
 
-    <!-- Popup Image Modal -->
-    <div id="popupModal" class="popup-modal">
-        <span id="closePopup" class="close-popup">&times;</span>
-        <img id="popupImage" class="popup-image" src="" alt="Popup Image">
-    </div>
+    <script>
+        // Menambahkan fitur popup untuk gambar
+        document.addEventListener("DOMContentLoaded", function() {
+            const popupImages = document.querySelectorAll('.popup-image');
+            const popup = document.createElement('div');
+            popup.classList.add('popup');
+            
+            // Menambahkan elemen popup-content ke dalam popup
+            const popupContent = document.createElement('div');
+            popupContent.classList.add('popup-content');
+            popup.appendChild(popupContent);
+            
+            // Menambahkan tombol close untuk popup
+            const closeBtn = document.createElement('span');
+            closeBtn.classList.add('popup-close');
+            closeBtn.textContent = '×';
+            popupContent.appendChild(closeBtn);
+            
+            document.body.appendChild(popup);
+            
+            // Menangani klik gambar untuk menampilkan popup
+            popupImages.forEach(function(image) {
+                image.addEventListener('click', function() {
+                    const imgClone = image.cloneNode();
+                    popupContent.insertBefore(imgClone, closeBtn);
+                    popup.style.display = 'flex';
+                });
+            });
+            
+            // Menangani klik tombol close untuk menutup popup
+            closeBtn.addEventListener('click', function() {
+                popup.style.display = 'none';
+            });
+            
+            // Menutup popup jika area luar gambar diklik
+            popup.addEventListener('click', function(e) {
+                if (e.target === popup) {
+                    popup.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
