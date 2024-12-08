@@ -72,3 +72,22 @@ confessForm.addEventListener("submit", (e) => {
 
 // Menampilkan pesan saat halaman pertama kali dimuat
 displayMessages();
+
+// Handle popup image for gallery and news items
+document.querySelectorAll('.gallery-image, .news-image').forEach(function(image) {
+    image.addEventListener('click', function() {
+        const popup = document.getElementById('imagePopup');
+        const popupImage = document.getElementById('popupImage');
+        
+        // Set the image in the popup to the clicked image's src
+        popupImage.src = image.src;
+        
+        // Show the popup
+        popup.style.display = 'block';
+    });
+});
+
+// Close popup when the close button is clicked
+document.querySelector('.popup-close').addEventListener('click', function() {
+    document.getElementById('imagePopup').style.display = 'none';
+});
