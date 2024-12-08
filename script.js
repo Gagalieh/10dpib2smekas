@@ -72,3 +72,31 @@ confessForm.addEventListener("submit", (e) => {
 
 // Menampilkan pesan saat halaman pertama kali dimuat
 displayMessages();
+// Ambil elemen popup dan close button
+const popup = document.getElementById('popup-image');
+const closePopup = document.querySelector('.close-popup');
+const popupImg = document.getElementById('popup-img');
+
+// Ambil semua gambar dengan class .popup-trigger
+const popupTriggers = document.querySelectorAll('.popup-trigger');
+
+// Menambahkan event listener pada setiap gambar untuk memicu popup
+popupTriggers.forEach(trigger => {
+    trigger.addEventListener('click', function() {
+        const imageSource = this.src;
+        popupImg.src = imageSource;  // Atur sumber gambar popup
+        popup.style.display = 'flex'; // Tampilkan popup
+    });
+});
+
+// Menutup popup saat klik tombol close
+closePopup.addEventListener('click', () => {
+    popup.style.display = 'none';
+});
+
+// Menutup popup saat klik di luar gambar
+window.addEventListener('click', (event) => {
+    if (event.target === popup) {
+        popup.style.display = 'none';
+    }
+});
