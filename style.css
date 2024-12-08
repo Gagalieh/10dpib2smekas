@@ -5,40 +5,47 @@
     box-sizing: border-box;
 }
 
-/* Global Styles */
+html {
+    font-size: 16px;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f9;
     color: #333;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
-h1, h2 {
-    color: #ffffff;
-    text-align: center;
-    padding: 10px;
-}
-
+/* Header Styles */
 header {
     background-color: #4CAF50;
     padding: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 2.5rem;
 }
 
 nav ul {
     list-style: none;
-    padding: 0;
     text-align: center;
+    padding: 0;
 }
 
 nav ul li {
     display: inline-block;
-    margin-right: 15px;
+    margin: 0 15px;
 }
 
 nav ul li a {
     text-decoration: none;
     color: #ffffff;
     font-weight: bold;
+    font-size: 1.1rem;
     transition: color 0.3s ease;
 }
 
@@ -58,15 +65,17 @@ section {
 h2 {
     background-color: #4CAF50;
     padding: 10px;
-    border-radius: 5px;
     color: white;
+    font-size: 1.8rem;
+    text-align: center;
+    border-radius: 5px;
 }
 
 /* Gallery Styles */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 2px;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
 }
 
 .gallery-item img {
@@ -74,133 +83,185 @@ h2 {
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery-item img:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Confess Form Styles */
-form {
+/* Berita Styles */
+.news-item {
+    margin-bottom: 30px;
+}
+
+.news-item a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: block;
+    padding: 10px;
     background-color: #f9f9f9;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.news-item a:hover {
+    background-color: #e2f0d9;
+    transform: translateY(-5px);
+}
+
+/* Gambar Berita */
+.news-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Confess Form */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-label {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
+form label {
     display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
 }
 
-input[type="text"],
-textarea {
+form input, form textarea {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     font-size: 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-textarea {
+form textarea {
     height: 150px;
     resize: none;
 }
 
-button {
+form button {
     background-color: #4CAF50;
-    color: #ffffff;
-    padding: 12px 20px;
-    font-size: 1.2rem;
+    color: white;
     border: none;
-    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 1.1rem;
     cursor: pointer;
+    border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+form button:hover {
     background-color: #45a049;
 }
 
-/* Display Messages */
-#confessMessages {
-    margin-top: 20px;
-}
-
-.message {
-    background-color: #e9f7e5;
-    border-left: 5px solid #4CAF50;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.message p {
-    margin: 5px 0;
-}
-
-.message small {
-    display: block;
-    color: #888;
-    margin-top: 10px;
-}
-
-/* Profile Section */
-#profile ul {
-    list-style: none;
-    padding: 0;
-}
-
-#profile li {
-    margin-bottom: 10px;
-}
-
-#profile a {
-    text-decoration: none;
-    color: #4CAF50;
-    transition: color 0.3s ease;
-}
-
-#profile a:hover {
-    color: #FFD700;
-}
-
-/* News Section */
-#news ul {
-    list-style: none;
-    padding: 0;
-}
-
-#news li {
-    margin-bottom: 10px;
-}
-
-#news .news-item {
-    display: flex;
+/* Popup Styles */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
     align-items: center;
-    gap: 15px;
+    z-index: 9999;
 }
 
-#news .news-image {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
+.popup-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.popup img {
+    width: 100%;
+    height: auto;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#news a {
-    text-decoration: none;
-    color: #4CAF50;
-    font-weight: bold;
-    transition: color 0.3s ease;
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 50%;
 }
 
-#news a:hover {
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    nav ul li {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    nav ul li a {
+        font-size: 1rem;
+    }
+
+    .popup-content {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    form {
+        padding: 15px;
+    }
+
+    form button {
+        width: 100%;
+    }
+}
