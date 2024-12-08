@@ -65,8 +65,8 @@ h2 {
 /* Gallery Styles */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2px;
 }
 
 .gallery-item img {
@@ -75,7 +75,6 @@ h2 {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-    cursor: pointer; /* Menambahkan pointer cursor */
 }
 
 .gallery-item img:hover {
@@ -183,17 +182,16 @@ button:hover {
     margin-bottom: 10px;
 }
 
-#news .news-item {
+.news-item {
     display: flex;
     align-items: center;
-    gap: 15px;
 }
 
-#news .news-image {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
+.news-item img {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -208,67 +206,13 @@ button:hover {
     color: #FFD700;
 }
 
-/* Popup Modal Styles */
-.popup-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+/* Footer */
+footer {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    transition: opacity 0.3s ease;
+    width: 100%;
 }
-
-.popup-modal.active {
-    display: flex;
-    opacity: 1;
-}
-
-.popup-image {
-    max-width: 90%;
-    max-height: 80vh;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.close-popup {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: #ffffff;
-    font-size: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.close-popup:hover {
-    color: #FFD700;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .gallery {
-        grid-template-columns: repeat(2, 1fr); /* Menyesuaikan untuk layar kecil */
-    }
-
-    #news .news-item {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    #news .news-image {
-        width: 100px;
-        height: 100px;
-    }
-}
-
-@media (max-width: 480px) {
-    .gallery {
-        grid-template-columns: 1fr; /* Menampilkan gambar satu kolom */
-    }
-    }
