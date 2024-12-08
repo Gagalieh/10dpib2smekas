@@ -71,11 +71,12 @@ h2 {
     border-radius: 5px;
 }
 
-/* Gallery Styles */
+/* Gallery Styles - 4 x 2 Layout */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* 4 kolom */
     gap: 20px;
+    padding: 10px;
 }
 
 .gallery-item img {
@@ -213,7 +214,7 @@ form button:hover {
 /* Responsiveness */
 @media screen and (max-width: 768px) {
     .gallery {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 
     h1 {
