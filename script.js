@@ -72,7 +72,8 @@ confessForm.addEventListener("submit", (e) => {
 
 // Menampilkan pesan saat halaman pertama kali dimuat
 displayMessages();
-// Ambil elemen popup dan close button
+
+// Popup Image Functionality
 const popup = document.getElementById('popup-image');
 const closePopup = document.querySelector('.close-popup');
 const popupImg = document.getElementById('popup-img');
