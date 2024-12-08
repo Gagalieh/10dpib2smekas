@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kelas 10 Desain Permodelan dan Informasi Bangunan 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Kelas 10 Desain Permodelan dan Informasi Bangunan 2</h1>
+        <nav>
+            <ul>
+                <li><a href="#gallery">Galeri</a></li>
+                <li><a href="#confess">Confess</a></li>
+                <li><a href="#profile">Profil Kelas</a></li>
+                <li><a href="#news">Berita</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="gallery">
+        <h2>Galeri</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="images/foto1.jpg" alt="Deskripsi Foto 1" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="images/foto2.jpg" alt="Deskripsi Foto 2" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="images/foto3.jpg" alt="Deskripsi Foto 3" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="images/foto4.jpg" alt="Deskripsi Foto 4" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="images/foto5.jpg" alt="Deskripsi Foto 5" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="images/foto6.jpg" alt="Deskripsi Foto 6" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="images/foto7.jpg" alt="Deskripsi Foto 7" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="images/foto8.jpg" alt="Deskripsi Foto 8" class="gallery-img">
+            </div>
+        </div>
+    </section>
+
+    <section id="confess">
+        <h2>Kirim Pesan Untuk Kelas Kami</h2>
+        <form id="confessForm">
+            <label for="sender">Pengirim:</label>
+            <input type="text" id="sender" name="sender" required>
+            <label for="recipient">Tujuan:</label>
+            <input type="text" id="recipient" name="recipient" required>
+            <label for="message">Pesan:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Kirim</button>
+        </form>
+        <div id="confessMessages">
+            <!-- Pesan confess akan ditampilkan di sini -->
+        </div>
+    </section>
+
+    <section id="profile">
+        <h2>Profil Kelas</h2>
+        <p>Berikut adalah struktur kelas 10 Desain Permodelan dan Informasi Bangunan:</p>
+        <ul>
+            <li><strong>Ketua Kelas:</strong> Samuel Panji Truna Mahaja Surya Sata <a href="https://www.instagram.com/samuelpanji1">Instagram</a></li>
+            <li><strong>Wakil Ketua Kelas:</strong> Aulia Pandu Eka Putri <a href="https://www.instagram.com/aullpoetr">Instagram</a></li>
+            <li><strong>Wali Kelas:</strong> Netty Tri Wahyuni</li>
+            <li><strong>Part Of: <a href="https://smkn1kediri.sch.id/">SMKN 1 KEDIRI</a></li>
+            <li><strong>Akun Instagram : <a href="https://www.instagram.com/twodpib10.smeksa_?igsh=eXloMzd3ZGJpNGtx">Instagram</a></li>
+        </ul>
+    </section>
+
+    <section id="news">
+        <h2>Berita Kelas</h2>
+        <ul>
+            <li>
+                <div class="news-item">
+                    <img src="images/berita1.jpg" alt="Berita 1" class="news-image">
+                    <a href="#">Diduga karena losestreak, Likacuk teriak teriak</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <img src="images/berita2.jpg" alt="Berita 2" class="news-image">
+                    <a href="#">Ujian bengkel tanggal 10 jangan lupa belajar</a>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 10 DPIB 2 SMK Negeri 1 Kota Kediri. Semua hak dilindungi.</p>
+    </footer>
+
+    <!-- Mengimpor Firebase Config -->
+    <script type="module" src="config.js"></script>
+    <!-- Mengimpor JavaScript utama untuk menangani logika Confess -->
+    <script type="module" src="confess.js"></script>
+    <!-- Mengimpor Script tambahan -->
+    <script type="module" src="script.js"></script>
+
+    <!-- Popup Image Modal -->
+    <div id="popupModal" class="popup-modal">
+        <span id="closePopup" class="close-popup">&times;</span>
+        <img id="popupImage" class="popup-image" src="" alt="Popup Image">
+    </div>
+</body>
+</html>
