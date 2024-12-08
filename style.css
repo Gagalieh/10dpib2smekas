@@ -65,8 +65,8 @@ h2 {
 /* Gallery Styles */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 2px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
 }
 
 .gallery-item img {
@@ -75,6 +75,7 @@ h2 {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    cursor: pointer; /* Menambahkan pointer cursor */
 }
 
 .gallery-item img:hover {
@@ -204,3 +205,70 @@ button:hover {
 }
 
 #news a:hover {
+    color: #FFD700;
+}
+
+/* Popup Modal Styles */
+.popup-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+
+.popup-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.popup-image {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.close-popup {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-popup:hover {
+    color: #FFD700;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr); /* Menyesuaikan untuk layar kecil */
+    }
+
+    #news .news-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #news .news-image {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery {
+        grid-template-columns: 1fr; /* Menampilkan gambar satu kolom */
+    }
+    }
