@@ -1,52 +1,74 @@
-// Menangani popup gambar pada galeri
-const galleryImages = document.querySelectorAll('.gallery-item img');
-const popupContainer = document.createElement('div');
-popupContainer.classList.add('popup-container');
-document.body.appendChild(popupContainer);
+// Menambahkan event listener untuk setiap gambar di galeri
+document.querySelectorAll('.gallery-item img').forEach((img) => {
+    img.addEventListener('click', (event) => {
+        // Ambil URL gambar yang di-klik
+        const imgSrc = event.target.src;
 
-galleryImages.forEach((image) => {
-    image.addEventListener('click', (e) => {
-        const imgSrc = e.target.src;
-        popupContainer.innerHTML = `
-            <div class="popup-content">
-                <span class="close-btn">&times;</span>
-                <img src="${imgSrc}" alt="Popup Image">
-            </div>
-        `;
-        popupContainer.style.display = 'flex';
+        // Menampilkan popup dengan gambar yang dipilih
+        const popupContainer = document.createElement('div');
+        popupContainer.classList.add('popup-container');
 
-        // Menangani penutupan popup
-        const closeBtn = popupContainer.querySelector('.close-btn');
+        // Membuat konten popup
+        const popupContent = document.createElement('div');
+        popupContent.classList.add('popup-content');
+        
+        // Membuat elemen gambar di dalam popup
+        const popupImg = document.createElement('img');
+        popupImg.src = imgSrc;
+        popupContent.appendChild(popupImg);
+
+        // Menambahkan tombol close
+        const closeBtn = document.createElement('span');
+        closeBtn.classList.add('close-btn');
+        closeBtn.innerHTML = '&times;';
+        popupContent.appendChild(closeBtn);
+
+        // Menambahkan popup ke dalam halaman
+        popupContainer.appendChild(popupContent);
+        document.body.appendChild(popupContainer);
+
+        // Menutup popup ketika tombol close di-klik
         closeBtn.addEventListener('click', () => {
-            popupContainer.style.display = 'none';
+            document.body.removeChild(popupContainer);
+        });
+
+        // Menutup popup ketika mengklik area luar popup
+        popupContainer.addEventListener('click', (event) => {
+            if (event.target === popupContainer) {
+                document.body.removeChild(popupContainer);
+            }
         });
     });
 });
 
-// Menangani pengiriman form "Confess"
+// Fitur Confess Form (Menampilkan pesan yang dikirim)
 const confessForm = document.getElementById('confessForm');
-const confessMessagesContainer = document.getElementById('confessMessages');
+const confessMessages = document.getElementById('confessMessages');
 
-confessForm.addEventListener('submit', (event) => {
-    event.preventDefault(); // Mencegah form submit secara default
+confessForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // Menghentikan pengiriman form secara default
 
-    const sender = event.target.sender.value;
-    const recipient = event.target.recipient.value;
-    const message = event.target.message.value;
+    const sender = document.getElementById('sender').value;
+    const recipient = document.getElementById('recipient').value;
+    const message = document.getElementById('message').value;
 
-    // Membuat elemen pesan
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('message');
-    messageElement.innerHTML = `
-        <p><strong>Pengirim:</strong> ${sender}</p>
-        <p><strong>Tujuan:</strong> ${recipient}</p>
-        <p><strong>Pesan:</strong> ${message}</p>
-        <small>${new Date().toLocaleString()}</small>
-    `;
+    if (sender && recipient && message) {
+        // Membuat elemen pesan baru
+        const newMessage = document.createElement('div');
+        newMessage.classList.add('message');
 
-    // Menambahkan pesan ke tampilan
-    confessMessagesContainer.appendChild(messageElement);
+        // Menambahkan konten pesan
+        newMessage.innerHTML = `
+            <p><strong>Pengirim:</strong> ${sender}</p>
+            <p><strong>Tujuan:</strong> ${recipient}</p>
+            <p><strong>Pesan:</strong> ${message}</p>
+            <small>${new Date().toLocaleString()}</small>
+        `;
 
-    // Mengosongkan form setelah pengiriman
-    confessForm.reset();
+        // Menambahkan pesan ke bagian bawah daftar pesan
+        confessMessages.appendChild(newMessage);
+
+        // Mengosongkan form setelah pesan dikirim
+        confessForm.reset();
+    }
 });
