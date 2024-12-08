@@ -65,7 +65,7 @@ h2 {
 /* Gallery Styles */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minimax(50px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     margin: 0 auto;
     padding: 10px;
