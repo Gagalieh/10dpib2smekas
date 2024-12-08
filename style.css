@@ -65,8 +65,8 @@ h2 {
 /* Gallery Styles */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit(250px,1fr);
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit(2px,1fr);
+    gap: 2px;
 }
 
 .gallery-item img {
