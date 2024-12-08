@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kelas 10 Desain Permodelan dan Informasi Bangunan 2</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
@@ -20,32 +19,44 @@
         </nav>
     </header>
 
+    <section id="news">
+        <h2>Berita Kelas</h2>
+        <div class="news-item">
+            <a href="#">Diduga karena losestreak, Likacuk teriak teriak</a>
+            <img src="images/image1.jpg" alt="Berita 1" class="news-image">
+        </div>
+        <div class="news-item">
+            <a href="#">Ujian bengkel tanggal 10 jangan lupa belajar</a>
+            <img src="images/image2.jpg" alt="Berita 2" class="news-image">
+        </div>
+    </section>
+
     <section id="gallery">
         <h2>Galeri</h2>
         <div class="gallery">
             <div class="gallery-item">
-                <img src="images/foto1.jpg" alt="Deskripsi Foto 1" class="popup-image">
+                <img src="images/foto1.jpg" alt="Image 1" class="gallery-image">
             </div>
             <div class="gallery-item">
-                <img src="images/foto2.jpg" alt="Deskripsi Foto 2" class="popup-image">
+                <img src="images/foto2.jpg" alt="Image 2" class="gallery-image">
             </div>
             <div class="gallery-item">
-                <img src="images/foto3.jpg" alt="Deskripsi Foto 3" class="popup-image">
+                <img src="images/foto3.jpg" alt="Image 3" class="gallery-image">
             </div>
             <div class="gallery-item">
-                <img src="images/foto4.jpg" alt="Deskripsi Foto 4" class="popup-image">
+                <img src="images/foto4.jpg" alt="Image 4" class="gallery-image">
             </div>
             <div class="gallery-item">
-                <img src="images/foto5.jpg" alt="Deskripsi Foto 5" class="popup-image">
+                <img src="images/foto5.jpg" alt="Image 5" class="gallery-image">
             </div>
             <div class="gallery-item">
-                <img src="images/foto6.jpg" alt="Deskripsi Foto 6" class="popup-image">
+                <img src="images/foto6.jpg" alt="Image 6" class="gallery-image">
             </div>
             <div class="gallery-item">
-                <img src="images/foto7.jpg" alt="Deskripsi Foto 7" class="popup-image">
+                <img src="images/foto7.jpg" alt="Image 7" class="gallery-image">
             </div>
             <div class="gallery-item">
-                <img src="images/foto8.jpg" alt="Deskripsi Foto 8" class="popup-image">
+                <img src="images/foto8.jpg" alt="Image 8" class="gallery-image">
             </div>
         </div>
     </section>
@@ -59,7 +70,6 @@
             <input type="text" id="recipient" name="recipient" required>
             <label for="message">Pesan:</label>
             <textarea id="message" name="message" required></textarea>
-
             <button type="submit">Kirim</button>
         </form>
         <div id="confessMessages">
@@ -67,88 +77,18 @@
         </div>
     </section>
 
-    <section id="profile">
-        <h2>Profil Kelas</h2>
-        <p>Berikut adalah struktur kelas 10 Desain Permodelan dan Informasi Bangunan:</p>
-        <ul>
-            <li><strong>Ketua Kelas:</strong> Samuel Panji Truna Mahaja Surya Sata <a href="https://www.instagram.com/samuelpanji1">Instagram</a></li>
-            <li><strong>Wakil Ketua Kelas:</strong> Aulia Pandu Eka Putri <a href="https://www.instagram.com/aullpoetr">Instagram</a></li>
-            <li><strong>Wali Kelas:</strong> Netty Tri Wahyuni</li>
-            <li><strong>Part Of: <a href="https://smkn1kediri.sch.id/">SMKN 1 KEDIRI</a></strong></li>
-            <li><strong>Akun Instagram : <a href="https://www.instagram.com/twodpib10.smeksa_?igsh=eXloMzd3ZGJpNGtx">Instagram</a></strong></li>
-        </ul>
-    </section>
-
-    <section id="news">
-        <h2>Berita Kelas</h2>
-        <ul>
-            <li>
-                <div class="news-item">
-                    <img src="images/berita1.jpg" alt="Berita 1" class="news-image popup-image">
-                    <a href="#">Diduga karena losestreak, Likacuk teriak teriak</a>
-                </div>
-            </li>
-            <li>
-                <div class="news-item">
-                    <img src="images/berita2.jpg" alt="Berita 2" class="news-image popup-image">
-                    <a href="#">Ujian bengkel tanggal 10 jangan lupa belajar</a>
-                </div>
-            </li>
-        </ul>
-    </section>
-
     <footer>
         <p>&copy; 2024 10 DPIB 2 SMK Negeri 1 Kota Kediri. Semua hak dilindungi.</p>
     </footer>
 
-    <!-- Mengimpor Firebase Config -->
-    <script type="module" src="config.js"></script>
-    <!-- Mengimpor JavaScript utama untuk menangani logika Confess -->
-    <script type="module" src="confess.js"></script>
-    <!-- Mengimpor Script tambahan -->
-    <script type="module" src="script.js"></script>
+    <!-- Popup Image -->
+    <div class="popup" id="imagePopup">
+        <div class="popup-content">
+            <img src="" alt="Popup Image" id="popupImage">
+            <span class="popup-close">&times;</span>
+        </div>
+    </div>
 
-    <script>
-        // Menambahkan fitur popup untuk gambar
-        document.addEventListener("DOMContentLoaded", function() {
-            const popupImages = document.querySelectorAll('.popup-image');
-            const popup = document.createElement('div');
-            popup.classList.add('popup');
-            
-            // Menambahkan elemen popup-content ke dalam popup
-            const popupContent = document.createElement('div');
-            popupContent.classList.add('popup-content');
-            popup.appendChild(popupContent);
-            
-            // Menambahkan tombol close untuk popup
-            const closeBtn = document.createElement('span');
-            closeBtn.classList.add('popup-close');
-            closeBtn.textContent = '×';
-            popupContent.appendChild(closeBtn);
-            
-            document.body.appendChild(popup);
-            
-            // Menangani klik gambar untuk menampilkan popup
-            popupImages.forEach(function(image) {
-                image.addEventListener('click', function() {
-                    const imgClone = image.cloneNode();
-                    popupContent.insertBefore(imgClone, closeBtn);
-                    popup.style.display = 'flex';
-                });
-            });
-            
-            // Menangani klik tombol close untuk menutup popup
-            closeBtn.addEventListener('click', function() {
-                popup.style.display = 'none';
-            });
-            
-            // Menutup popup jika area luar gambar diklik
-            popup.addEventListener('click', function(e) {
-                if (e.target === popup) {
-                    popup.style.display = 'none';
-                }
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
