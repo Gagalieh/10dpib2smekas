@@ -1,103 +1,52 @@
-// Mengimpor Firestore SDK
-import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+// Menangani popup gambar pada galeri
+const galleryImages = document.querySelectorAll('.gallery-item img');
+const popupContainer = document.createElement('div');
+popupContainer.classList.add('popup-container');
+document.body.appendChild(popupContainer);
 
-// Mendapatkan referensi ke Firestore
-const db = getFirestore();
+galleryImages.forEach((image) => {
+    image.addEventListener('click', (e) => {
+        const imgSrc = e.target.src;
+        popupContainer.innerHTML = `
+            <div class="popup-content">
+                <span class="close-btn">&times;</span>
+                <img src="${imgSrc}" alt="Popup Image">
+            </div>
+        `;
+        popupContainer.style.display = 'flex';
 
-// Mendapatkan referensi ke koleksi "messages"
-const messagesRef = collection(db, "messages");
-
-// Mendapatkan form dan tempat untuk menampilkan pesan
-const confessForm = document.getElementById("confessForm");
-const confessMessagesContainer = document.getElementById("confessMessages");
-
-// Fungsi untuk mengirimkan pesan ke Firestore
-async function sendMessage(sender, recipient, message) {
-    try {
-        // Menambahkan pesan baru ke Firestore
-        await addDoc(messagesRef, {
-            sender: sender,
-            recipient: recipient,
-            message: message,
-            timestamp: new Date() // Timestamp untuk pengurutan
+        // Menangani penutupan popup
+        const closeBtn = popupContainer.querySelector('.close-btn');
+        closeBtn.addEventListener('click', () => {
+            popupContainer.style.display = 'none';
         });
-        console.log("Pesan terkirim!");
-        // Memperbarui tampilan dengan pesan terbaru
-        displayMessages();
-    } catch (error) {
-        console.error("Error menambahkan pesan: ", error);
-    }
-}
-
-// Fungsi untuk menampilkan semua pesan yang ada di Firestore
-async function displayMessages() {
-    try {
-        // Mengambil semua pesan dari Firestore
-        const querySnapshot = await getDocs(messagesRef);
-        confessMessagesContainer.innerHTML = ''; // Mengosongkan kontainer sebelum menampilkan pesan baru
-        querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            const messageElement = document.createElement("div");
-            messageElement.classList.add("message");
-            messageElement.innerHTML = `
-                <p><strong>Pengirim:</strong> ${data.sender}</p>
-                <p><strong>Tujuan:</strong> ${data.recipient}</p>
-                <p><strong>Pesan:</strong> ${data.message}</p>
-                <p><small>Waktu: ${new Date(data.timestamp.seconds * 1000).toLocaleString()}</small></p>
-                <hr>
-            `;
-            confessMessagesContainer.appendChild(messageElement);
-        });
-    } catch (error) {
-        console.error("Error menampilkan pesan: ", error);
-    }
-}
-
-// Menangani pengiriman formulir confess
-confessForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const sender = document.getElementById("sender").value;
-    const recipient = document.getElementById("recipient").value;
-    const message = document.getElementById("message").value;
-
-    if (sender && recipient && message) {
-        sendMessage(sender, recipient, message);
-    } else {
-        alert("Semua kolom harus diisi!");
-    }
-
-    confessForm.reset(); // Reset form setelah pengiriman pesan
-});
-
-// Menampilkan pesan saat halaman pertama kali dimuat
-displayMessages();
-
-// Popup Image Functionality
-const popup = document.getElementById('popup-image');
-const closePopup = document.querySelector('.close-popup');
-const popupImg = document.getElementById('popup-img');
-
-// Ambil semua gambar dengan class .popup-trigger
-const popupTriggers = document.querySelectorAll('.popup-trigger');
-
-// Menambahkan event listener pada setiap gambar untuk memicu popup
-popupTriggers.forEach(trigger => {
-    trigger.addEventListener('click', function() {
-        const imageSource = this.src;
-        popupImg.src = imageSource;  // Atur sumber gambar popup
-        popup.style.display = 'flex'; // Tampilkan popup
     });
 });
 
-// Menutup popup saat klik tombol close
-closePopup.addEventListener('click', () => {
-    popup.style.display = 'none';
-});
+// Menangani pengiriman form "Confess"
+const confessForm = document.getElementById('confessForm');
+const confessMessagesContainer = document.getElementById('confessMessages');
 
-// Menutup popup saat klik di luar gambar
-window.addEventListener('click', (event) => {
-    if (event.target === popup) {
-        popup.style.display = 'none';
-    }
+confessForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // Mencegah form submit secara default
+
+    const sender = event.target.sender.value;
+    const recipient = event.target.recipient.value;
+    const message = event.target.message.value;
+
+    // Membuat elemen pesan
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message');
+    messageElement.innerHTML = `
+        <p><strong>Pengirim:</strong> ${sender}</p>
+        <p><strong>Tujuan:</strong> ${recipient}</p>
+        <p><strong>Pesan:</strong> ${message}</p>
+        <small>${new Date().toLocaleString()}</small>
+    `;
+
+    // Menambahkan pesan ke tampilan
+    confessMessagesContainer.appendChild(messageElement);
+
+    // Mengosongkan form setelah pengiriman
+    confessForm.reset();
 });
