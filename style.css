@@ -192,6 +192,13 @@ button:hover {
 #news a:hover {
     color: #FFD700;
 }
+#news img {
+    max-width: 100%; /* Gambar tidak akan melebihi lebar container */
+    height: auto; /* Mempertahankan rasio gambar */
+    margin-top: 10px; /* Memberikan jarak antara teks dan gambar */
+    border-radius: 8px; /* Membuat sudut gambar melengkung */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Menambahkan efek bayangan */
+}
 
 /* Footer */
 footer {
