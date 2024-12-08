@@ -74,16 +74,16 @@
             <li><strong>Ketua Kelas:</strong> Samuel Panji Truna Mahaja Surya Sata <a href="https://www.instagram.com/samuelpanji1">Instagram</a></li>
             <li><strong>Wakil Ketua Kelas:</strong> Aulia Pandu Eka Putri <a href="https://www.instagram.com/aullpoetr">Instagram</a></li>
             <li><strong>Wali Kelas:</strong> Netty Tri Wahyuni</li>
-            <li><strong>Part Of: <a href="https://smkn1kediri.sch.id/">SMKN 1 KEDIRI</a></strong></li>
-            <li><strong>Akun Instagram : <a href="https://www.instagram.com/twodpib10.smeksa_?igsh=eXloMzd3ZGJpNGtx">Instagram</a></strong></li>
+            <li><strong>Part Of:</strong> <a href="https://smkn1kediri.sch.id/">SMKN 1 KEDIRI</a></li>
+            <li><strong>Akun Instagram:</strong> <a href="https://www.instagram.com/twodpib10.smeksa_?igsh=eXloMzd3ZGJpNGtx">Instagram</a></li>
         </ul>
     </section>
 
     <section id="news">
         <h2>Berita Kelas</h2>
         <ul>
-            <li><a href="#">Diduga karena losestreak, Likacuk teriak teriak</a><img src="images/news1.jpg" alt="Berita 1"></li>
-            <li><a href="#">Ujian bengkel tanggal 10 jangan lupa belajar</a><img src="images/news2.jpg" alt="Berita 2"></li>
+            <li><a href="#">Diduga karena losestreak, Likacuk teriak teriak</a></li>
+            <li><a href="#">Ujian bengkel tanggal 10 jangan lupa belajar</a></li>
         </ul>
     </section>
 
@@ -91,11 +91,42 @@
         <p>&copy; 2024 10 DPIB 2 SMK Negeri 1 Kota Kediri. Semua hak dilindungi.</p>
     </footer>
 
+    <!-- Popup Image -->
+    <div id="popup" class="popup">
+        <span class="popup-close">&times;</span>
+        <img class="popup-image" src="" alt="Popup Image">
+    </div>
+
     <!-- Mengimpor Firebase Config -->
     <script type="module" src="config.js"></script>
     <!-- Mengimpor JavaScript utama untuk menangani logika Confess -->
     <script type="module" src="confess.js"></script>
     <!-- Mengimpor Script tambahan -->
     <script type="module" src="script.js"></script>
+    <script>
+        // JavaScript untuk Popup Image
+        const galleryImages = document.querySelectorAll('.gallery-item img');
+        const popup = document.getElementById('popup');
+        const popupImage = document.querySelector('.popup-image');
+        const popupClose = document.querySelector('.popup-close');
+
+        galleryImages.forEach(image => {
+            image.addEventListener('click', () => {
+                popup.style.display = 'flex';
+                popupImage.src = image.src;
+                popupImage.alt = image.alt;
+            });
+        });
+
+        popupClose.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                popup.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>

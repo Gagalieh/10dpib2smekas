@@ -81,49 +81,6 @@ h2 {
     transform: scale(1.1);
 }
 
-/* Popup Styles */
-.popup-container {
-    display: none; /* Mulai dengan popup tersembunyi */
-    position: fixed; /* Pastikan popup berada di posisi tetap */
-    top: 0;
-    left: 0;
-    width: 100%; /* Lebar penuh */
-    height: 100%; /* Tinggi penuh */
-    background-color: rgba(0, 0, 0, 0.8); /* Latar belakang gelap dengan transparansi */
-    justify-content: center; /* Untuk menyejajarkan secara vertikal */
-    align-items: center; /* Menyejajarkan secara horizontal */
-    z-index: 1000; /* Pastikan popup di atas semua konten lainnya */
-}
-
-.popup-content {
-    position: relative;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 90%; /* Mengatur lebar maksimum popup */
-    max-height: 80%; /* Mengatur tinggi maksimum popup */
-    overflow: auto; /* Agar gambar besar bisa di-scroll jika diperlukan */
-}
-
-.popup-content img {
-    width: 100%; /* Gambar akan menyesuaikan dengan lebar container */
-    height: auto; /* Memastikan proporsi gambar tetap terjaga */
-    display: block; /* Menghilangkan space kosong di bawah gambar */
-    margin: 0 auto; /* Menyelaraskan gambar di tengah */
-}
-
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 30px;
-    color: #333;
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 50%;
-    padding: 5px;
-}
-
 /* Confess Form Styles */
 form {
     background-color: #f9f9f9;
@@ -246,3 +203,39 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+/* Popup Image */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.popup-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    z-index: 1001;
+    transition: color 0.3s ease;
+}
+
+.popup-close:hover {
+    color: #FFD700;
+    }
