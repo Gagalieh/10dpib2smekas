@@ -69,6 +69,9 @@ h2 {
     gap: 10px;
     margin: 0 auto;
     padding: 10px;
+    
+    .hidden {
+  display: none;
 }
 
 .gallery-item img {
