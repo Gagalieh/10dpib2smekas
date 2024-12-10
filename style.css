@@ -135,8 +135,17 @@ button:hover {
 }
 
 /* Display Messages */
+/* style.css */
+.hidden {
+  display: none;
+}
+
 #confessMessages {
-    margin-top: 20px;
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff5f5;
+  color: #d8000c;
 }
 
 .message {
