@@ -256,11 +256,3 @@ footer {
 .hidden {
   display: none;
 }
-
-#confessMessage {
-  margin-top: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: #fff5f5;
-  color: #d8000c;
-}
