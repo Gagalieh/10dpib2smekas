@@ -72,3 +72,15 @@ confessForm.addEventListener("submit", (e) => {
 
 // Menampilkan pesan saat halaman pertama kali dimuat
 displayMessages();
+
+const toggleButton = document.getElementById('toggleButton');
+const gallery = document.getElementById('gallery');
+
+toggleButton.addEventListener('click', () => {
+  if (gallery.classList.contains('hidden')) {
+    gallery.classList.remove('hidden');
+    toggleButton.textContent = 'Tutup Galeri';
+  } else {
+    gallery.classList.add('hidden');
+    toggleButton.textContent = 'Buka Galeri';
+  }
