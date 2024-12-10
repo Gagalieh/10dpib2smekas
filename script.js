@@ -4,7 +4,7 @@ const gallery = document.getElementById('hidden');
 
 toggleButton.addEventListener('click', () => {
   if (gallery.style.display === 'none' || gallery.style.display === '') {
-    gallery.style.display = 'block';
+    gallery.style.display = 'grid';
     toggleButton.textContent = 'Tutup Galeri';
   } else {
     gallery.style.display = 'none';
