@@ -248,12 +248,3 @@ footer {
 .popup-close:hover {
     color: #FFD700;
     }
-    #hidden {
-  display: none;
-  
-#hidden {
-  margin-top: 20px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  background-color: #f9f9f9;
-}
