@@ -136,7 +136,7 @@ button:hover {
 
 /* Display Messages */
 /* style.css */
-.hidden {
+#confessMessages {
   display: none;
 }
 
