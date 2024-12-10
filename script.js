@@ -11,6 +11,19 @@ toggleButton.addEventListener('click', () => {
     toggleButton.textContent = 'Buka Galeri';
   }
 })
+// script.js
+const toggleMessage = document.getElementById('toggleMessage');
+const confessMessages = document.getElementById('confessMessages');
+
+toggleMessage.addEventListener('click', () => {
+  if (confessMessages.classList.contains('hide')) {
+    confessMessages.classList.remove('hide');
+    toggleMessage.textContent = 'Tutup Pesan';
+  } else {
+    confessMessages.classList.add('hide');
+    toggleMessage.textContent = 'Buka Pesan';
+  }
+});
 // Mengimpor Firestore SDK
 import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
