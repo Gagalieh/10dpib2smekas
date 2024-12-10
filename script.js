@@ -1,3 +1,16 @@
+// script.js
+const toggleButton = document.getElementById('toggleButton');
+const gallery = document.getElementById('hidden');
+
+toggleButton.addEventListener('click', () => {
+  if (gallery.style.display === 'none' || gallery.style.display === '') {
+    gallery.style.display = 'block';
+    toggleButton.textContent = 'Tutup Galeri';
+  } else {
+    gallery.style.display = 'none';
+    toggleButton.textContent = 'Buka Galeri';
+  }
+})
 // Mengimpor Firestore SDK
 import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
