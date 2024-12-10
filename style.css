@@ -248,3 +248,5 @@ footer {
 .popup-close:hover {
     color: #FFD700;
     }
+    #hidden {
+  display: none;
