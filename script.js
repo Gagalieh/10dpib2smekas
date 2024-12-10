@@ -68,18 +68,6 @@ confessForm.addEventListener("submit", (e) => {
     }
 
     confessForm.reset(); // Reset form setelah pengiriman pesan
-    
-    const toggleButton = document.getElementById('toggleButton');
-const gallery = document.getElementById('hidden');
-
-toggleButton.addEventListener('click', () => {
-  if (gallery.style.display === 'none' || gallery.style.display === '') {
-    gallery.style.display = 'block';
-    toggleButton.textContent = 'Tutup Galeri';
-  } else {
-    gallery.style.display = 'none';
-    toggleButton.textContent = 'Buka Galeri';
-  }
 });
 
 // Menampilkan pesan saat halaman pertama kali dimuat
