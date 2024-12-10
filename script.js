@@ -1,6 +1,6 @@
 // script.js
 const toggleButton = document.getElementById('toggleButton');
-const gallery = document.getElementById('hidden');
+const gallery = document.getElementById('gallery');
 
 toggleButton.addEventListener('click', () => {
   if (gallery.style.display === 'none' || gallery.style.display === '') {
