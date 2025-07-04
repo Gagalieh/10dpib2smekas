@@ -1,119 +1,22 @@
-// script.js
-const toggleButton = document.getElementById('toggleButton');
-const gallery = document.getElementById('gallery');
+/* ------------------------------------------
+   1) Toggle GALERI (pakai GitHub API)
+-------------------------------------------*/
 
-toggleButton.addEventListener('click', () => {
-  if (gallery.style.display === 'none' || gallery.style.display === '') {
-    gallery.style.display = 'grid';
-    toggleButton.textContent = 'Tutup Galeri';
-  } else {
-    gallery.style.display = 'none';
-    toggleButton.textContent = 'Buka Galeri';
-  }
-})
-// script.js
-const toggleMessage = document.getElementById('toggleMessage');
-const confessMessages = document.getElementById('confessMessages');
+// ========== CONFIG GitHub ==========
+const GITHUB_USER = "Gagalieh";        // <- username GitHub
+const GITHUB_REPO = "10dpib2smekas";   // <- nama repo
+const IMAGE_DIR  = "images";           // folder gambar
 
-toggleMessage.addEventListener('click', () => {
-  if (confessMessages.classList.contains('hide')) {
-    confessMessages.classList.remove('hide');
-    toggleMessage.textContent = 'Tutup Pesan';
-  } else {
-    confessMessages.classList.add('hide');
-    toggleMessage.textContent = 'Buka Pesan';
-  }
-});
-// Mengimpor Firestore SDK
-import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+// ========== ELEMENT ==========
+const toggleGalleryBtn = document.getElementById("toggleButton");
+const gallery          = document.getElementById("gallery");
 
-// Mendapatkan referensi ke Firestore
-const db = getFirestore();
-
-// Mendapatkan referensi ke koleksi "messages"
-const messagesRef = collection(db, "messages");
-
-// Mendapatkan form dan tempat untuk menampilkan pesan
-const confessForm = document.getElementById("confessForm");
-const confessMessagesContainer = document.getElementById("confessMessages");
-
-// Fungsi untuk mengirimkan pesan ke Firestore
-async function sendMessage(sender, recipient, message) {
-    try {
-        // Menambahkan pesan baru ke Firestore
-        await addDoc(messagesRef, {
-            sender: sender,
-            recipient: recipient,
-            message: message,
-            timestamp: new Date() // Timestamp untuk pengurutan
-        });
-        console.log("Pesan terkirim!");
-        // Memperbarui tampilan dengan pesan terbaru
-        displayMessages();
-    } catch (error) {
-        console.error("Error menambahkan pesan: ", error);
-    }
-}
-
-// Fungsi untuk menampilkan semua pesan yang ada di Firestore
-async function displayMessages() {
-    try {
-        // Mengambil semua pesan dari Firestore
-        const querySnapshot = await getDocs(messagesRef);
-        confessMessagesContainer.innerHTML = ''; // Mengosongkan kontainer sebelum menampilkan pesan baru
-        querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            const messageElement = document.createElement("div");
-            messageElement.classList.add("message");
-            messageElement.innerHTML = `
-                <p><strong>Pengirim:</strong> ${data.sender}</p>
-                <p><strong>Tujuan:</strong> ${data.recipient}</p>
-                <p><strong>Pesan:</strong> ${data.message}</p>
-                <p><small>Waktu: ${new Date(data.timestamp.seconds * 1000).toLocaleString()}</small></p>
-                <hr>
-            `;
-            confessMessagesContainer.appendChild(messageElement);
-        });
-    } catch (error) {
-        console.error("Error menampilkan pesan: ", error);
-    }
-}
-
-// Menangani pengiriman formulir confess
-confessForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const sender = document.getElementById("sender").value;
-    const recipient = document.getElementById("recipient").value;
-    const message = document.getElementById("message").value;
-
-    if (sender && recipient && message) {
-        sendMessage(sender, recipient, message);
-    } else {
-        alert("Semua kolom harus diisi!");
-    }
-
-    confessForm.reset(); // Reset form setelah pengiriman pesan
-});
-
-// Menampilkan pesan saat halaman pertama kali dimuat
-displayMessages();
-
-// ===== CONFIG =====
-const GITHUB_USER = "Gagalieh";   // ← ganti
-const GITHUB_REPO = "10dpib2smekas";       // ← ganti
-const IMAGE_DIR   = "images";     // folder berisi gambar
-
-// ===== ELEMENT =====
-const gallery   = document.getElementById("gallery");
-const toggleBtn = document.getElementById("toggleButton");
-
-// ===== FETCH FILE LIST FROM GITHUB =====
+// ========== Ambil file list dari GitHub & render ==========
 async function loadGallery() {
   const api = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${IMAGE_DIR}`;
   try {
     const res  = await fetch(api);
-    const list = await res.json();                   // [{name,download_url,type}, …]
+    const list = await res.json();     // [{name, download_url, type} ...]
 
     list
       .filter(f => f.type === "file" && /\.(png|jpe?g|gif|webp)$/i.test(f.name))
@@ -121,9 +24,9 @@ async function loadGallery() {
         const item = document.createElement("div");
         item.className = "gallery-item";
 
-        const img  = document.createElement("img");
-        img.src    = f.download_url;                 // raw.githubusercontent… link
-        img.alt    = f.name;
+        const img = document.createElement("img");
+        img.src   = f.download_url;
+        img.alt   = f.name;
 
         item.appendChild(img);
         gallery.appendChild(item);
@@ -134,16 +37,86 @@ async function loadGallery() {
   }
 }
 
-// ===== TOGGLE BUTTON (BUKA / TUTUP GALERI) =====
-toggleBtn.addEventListener("click", async () => {
-  // pertama kali ditekan → fetch gambar
+// ========== Tombol buka/tutup galeri ==========
+toggleGalleryBtn.addEventListener("click", async () => {
   if (!gallery.dataset.loaded) {
     await loadGallery();
     gallery.dataset.loaded = "true";
   }
-
   gallery.classList.toggle("hidden");
-  toggleBtn.textContent = gallery.classList.contains("hidden")
+  toggleGalleryBtn.textContent = gallery.classList.contains("hidden")
     ? "Buka Galeri"
     : "Tutup Galeri";
 });
+
+
+/* ------------------------------------------
+   2) Toggle PESAN terkirim
+-------------------------------------------*/
+const toggleMessageBtn   = document.getElementById("toggleMessage");
+const confessMsgBox      = document.getElementById("confessMessages");
+
+toggleMessageBtn.addEventListener("click", () => {
+  confessMsgBox.classList.toggle("hide");
+  toggleMessageBtn.textContent = confessMsgBox.classList.contains("hide")
+    ? "Buka Pesan"
+    : "Tutup Pesan";
+});
+
+
+/* ------------------------------------------
+   3) FIREBASE Confess (kirim & tampil)
+-------------------------------------------*/
+import {
+  getFirestore, collection, addDoc, getDocs
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+const db          = getFirestore();
+const messagesRef = collection(db, "messages");
+
+const confessForm = document.getElementById("confessForm");
+const messagesBox = document.getElementById("confessMessages");
+
+// Kirim pesan
+async function sendMessage(sender, recipient, message) {
+  await addDoc(messagesRef, {
+    sender, recipient, message,
+    timestamp: new Date()
+  });
+  displayMessages();
+}
+
+// Tampil pesan
+async function displayMessages() {
+  const snap = await getDocs(messagesRef);
+  messagesBox.innerHTML = "";
+  snap.forEach(doc => {
+    const d = doc.data();
+    messagesBox.insertAdjacentHTML(
+      "beforeend",
+      `<div class="message">
+         <p><strong>Pengirim:</strong> ${d.sender}</p>
+         <p><strong>Tujuan :</strong> ${d.recipient}</p>
+         <p>${d.message}</p>
+         <small>${new Date(d.timestamp.seconds*1000).toLocaleString()}</small>
+       </div>`
+    );
+  });
+}
+
+// Submit form
+confessForm.addEventListener("submit", async e => {
+  e.preventDefault();
+  const sender    = confessForm.sender.value.trim();
+  const recipient = confessForm.recipient.value.trim();
+  const message   = confessForm.message.value.trim();
+  if (sender && recipient && message) {
+    await sendMessage(sender, recipient, message);
+    confessForm.reset();
+  } else {
+    alert("Semua kolom harus diisi!");
+  }
+});
+
+// tampilkan pesan saat pertama load
+displayMessages();
