@@ -98,3 +98,52 @@ confessForm.addEventListener("submit", (e) => {
 
 // Menampilkan pesan saat halaman pertama kali dimuat
 displayMessages();
+
+// ===== CONFIG =====
+const GITHUB_USER = "Gagalieh";   // ← ganti
+const GITHUB_REPO = "10dpib2smekas";       // ← ganti
+const IMAGE_DIR   = "image";     // folder berisi gambar
+
+// ===== ELEMENT =====
+const gallery   = document.getElementById("gallery");
+const toggleBtn = document.getElementById("toggleButton");
+
+// ===== FETCH FILE LIST FROM GITHUB =====
+async function loadGallery() {
+  const api = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${IMAGE_DIR}`;
+  try {
+    const res  = await fetch(api);
+    const list = await res.json();                   // [{name,download_url,type}, …]
+
+    list
+      .filter(f => f.type === "file" && /\.(png|jpe?g|gif|webp)$/i.test(f.name))
+      .forEach(f => {
+        const item = document.createElement("div");
+        item.className = "gallery-item";
+
+        const img  = document.createElement("img");
+        img.src    = f.download_url;                 // raw.githubusercontent… link
+        img.alt    = f.name;
+
+        item.appendChild(img);
+        gallery.appendChild(item);
+      });
+  } catch (err) {
+    console.error("Galeri gagal dimuat:", err);
+    gallery.innerHTML = "<p style='color:red'>Galeri tidak dapat dimuat.</p>";
+  }
+}
+
+// ===== TOGGLE BUTTON (BUKA / TUTUP GALERI) =====
+toggleBtn.addEventListener("click", async () => {
+  // pertama kali ditekan → fetch gambar
+  if (!gallery.dataset.loaded) {
+    await loadGallery();
+    gallery.dataset.loaded = "true";
+  }
+
+  gallery.classList.toggle("hidden");
+  toggleBtn.textContent = gallery.classList.contains("hidden")
+    ? "Buka Galeri"
+    : "Tutup Galeri";
+});
