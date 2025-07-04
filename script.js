@@ -16,7 +16,7 @@ async function loadGallery() {
   const api = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${IMAGE_DIR}`;
   try {
     const res  = await fetch(api);
-    const list = await res.json();     // [{name, download_url, type} ...]
+    const list = await res.json();
 
     list
       .filter(f => f.type === "file" && /\.(png|jpe?g|gif|webp)$/i.test(f.name))
@@ -31,6 +31,10 @@ async function loadGallery() {
         item.appendChild(img);
         gallery.appendChild(item);
       });
+
+    /* — pasang listener click setelah semua gambar dibuat — */
+    enableImagePopup();
+
   } catch (err) {
     console.error("Galeri gagal dimuat:", err);
     gallery.innerHTML = "<p style='color:red'>Galeri tidak dapat dimuat.</p>";
@@ -120,3 +124,30 @@ confessForm.addEventListener("submit", async e => {
 
 // tampilkan pesan saat pertama load
 displayMessages();
+
+// ========== Popup Gambar ==========
+const popup       = document.getElementById("popup");
+const popupImage  = popup.querySelector(".popup-image");
+const popupClose  = popup.querySelector(".popup-close");
+
+// Tambahkan event listener ke Gambar yang baru dimuat
+function enableImagePopup() {
+  const allImages = document.querySelectorAll(".gallery-item img");
+  allImages.forEach(img => {
+    img.addEventListener("click", () => {
+      popup.style.display = "flex";
+      popupImage.src = img.src;
+      popupImage.alt = img.alt;
+    });
+  });
+}
+
+popupClose.addEventListener("click", () => {
+  popup.style.display = "none";
+});
+
+popup.addEventListener("click", e => {
+  if (e.target === popup) {
+    popup.style.display = "none";
+  }
+});
