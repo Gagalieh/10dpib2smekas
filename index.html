@@ -79,12 +79,6 @@
         <p>&copy; 2024 11 DPIB 2 SMK Negeri 1 Kota Kediri. Semua hak dilindungi.</p>
     </footer>
 
-    <!-- Popup Image -->
-    <div id="popup" class="popup">
-        <span class="popup-close">&times;</span>
-        <img class="popup-image" src="" alt="Popup Image">
-    </div>
-
     <!-- Mengimpor Firebase Config -->
     <script type="module" src="config.js"></script>
     <!-- Mengimpor JavaScript utama untuk menangani logika Confess -->
@@ -92,29 +86,7 @@
     <!-- Mengimpor Script tambahan -->
     <script type="module" src="script.js"></script>
     <script>
-        // JavaScript untuk Popup Image
-        const galleryImages = document.querySelectorAll('.gallery-item img');
-        const popup = document.getElementById('popup');
-        const popupImage = document.querySelector('.popup-image');
-        const popupClose = document.querySelector('.popup-close');
-
-        galleryImages.forEach(image => {
-            image.addEventListener('click', () => {
-                popup.style.display = 'flex';
-                popupImage.src = image.src;
-                popupImage.alt = image.alt;
-            });
-        });
-
-        popupClose.addEventListener('click', () => {
-            popup.style.display = 'none';
-        });
-
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                popup.style.display = 'none';
-            }
-        });
+        
     </script>
     <!-- Popup Image -->
 <div id="popup" class="popup">
