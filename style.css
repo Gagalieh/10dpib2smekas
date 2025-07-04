@@ -72,3 +72,7 @@ footer { background: #1f1f1f; color: #ccc; text-align: center; padding: 20px; fo
 section { margin: 40px 20px; }
 
 #gallery { grid-template-columns: repeat(2, 1fr); } }
+/* Bila #gallery mempunyai class .hidden, paksa sembunyi */
+#gallery.hidden {
+  display: none;
+}
