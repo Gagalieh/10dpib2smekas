@@ -33,22 +33,7 @@ button:hover { background: #e600b8; transform: translateY(-2px); }
 
 #gallery { grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 0 auto; padding: 10px; margin-top: 20px; }
 
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Biar gambar tetap proporsional dan rapi */
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.gallery-item {
-  overflow: hidden;
-  border-radius: 10px;
-  aspect-ratio: 1/1; /* Biar kotak rapi */
-}
-
-
+.gallery-item img { width: 100%; height: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease; }
 
 .gallery-item img:hover { transform: scale(1.1); }
 
@@ -87,15 +72,3 @@ footer { background: #1f1f1f; color: #ccc; text-align: center; padding: 20px; fo
 section { margin: 40px 20px; }
 
 #gallery { grid-template-columns: repeat(2, 1fr); } }
-
-@media (max-width: 768px) {
-  #gallery {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  #gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
