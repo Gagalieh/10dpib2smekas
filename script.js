@@ -102,7 +102,7 @@ displayMessages();
 // ===== CONFIG =====
 const GITHUB_USER = "Gagalieh";   // ← ganti
 const GITHUB_REPO = "10dpib2smekas";       // ← ganti
-const IMAGE_DIR   = "image";     // folder berisi gambar
+const IMAGE_DIR   = "images";     // folder berisi gambar
 
 // ===== ELEMENT =====
 const gallery   = document.getElementById("gallery");
