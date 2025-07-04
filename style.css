@@ -76,3 +76,28 @@ section { margin: 40px 20px; }
 #gallery.hidden {
   display: none;
 }
+
+#countdown {
+  text-align: center;
+  background: #1f1f1f;
+  padding: 60px 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 0, 204, 0.2);
+  margin-top: 60px;
+}
+
+#countdown h2 {
+  font-size: 2rem;
+  color: #ff00cc;
+  margin-bottom: 20px;
+}
+
+.timer {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
