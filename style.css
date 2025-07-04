@@ -20,7 +20,7 @@ header h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: 1px; }
 
 nav ul { display: flex; justify-content: center; gap: 30px; list-style: none; margin-top: 20px; flex-wrap: wrap; }
 
-nav ul li a { text-decoration: none; color: #ffffff; font-weight: 600; position: relative; transition: color 0.3s ease; }
+nav ul li a { text-decoration: none; font-size: 0.7rem; color: #ffffff; font-weight: 600; position: relative; transition: color 0.3s ease; }
 
 nav ul li a::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 0; height: 2px; background: #ff00cc; transition: width 0.3s; }
 
@@ -74,7 +74,11 @@ footer { background: #1f1f1f; color: #ccc; text-align: center; padding: 20px; fo
 
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-@media (max-width: 600px) { nav ul { flex-direction: column; gap: 15px; }
+@media (max-width: 600px) {
+  nav ul {
+    flex-wrap: wrap; /* Tetap horizontal tapi bisa turun jika sempit */
+  }
+        }
 
 section { margin: 40px 20px; }
 
