@@ -45,7 +45,16 @@
 
       <hr />
 
-      <h2>Daftar Foto</h2>
+      <h2>Tag Manager</h2>
+      <div style="display:flex;gap:8px;align-items:center">
+        <input id="newTagInput" placeholder="Tambah tag baru" />
+        <button id="addTagBtn">Tambah Tag</button>
+      </div>
+      <div id="globalTagsList" style="margin-top:8px"></div>
+
+      <hr />
+
+      <h2>Daftar Foto (klik Edit untuk ubah)</h2>
       <div style="display:flex;gap:8px;margin-bottom:8px;">
         <input id="filterTags" placeholder="Filter tag (pisah koma)" />
         <button id="applyFilter">Terapkan Filter</button>
@@ -60,6 +69,22 @@
 
     <div id="status" style="margin-top:14px;color:#fff"></div>
   </main>
+
+  <!-- Edit modal -->
+  <div id="editModal" style="display:none;position:fixed;inset:0;justify-content:center;align-items:center;background:rgba(0,0,0,0.6);z-index:1600">
+    <div style="background:#0b1220;padding:16px;border-radius:8px;width:90%;max-width:600px;color:#fff">
+      <h3>Edit Foto</h3>
+      <div style="margin-bottom:8px"><input id="editTitle" placeholder="Judul" /></div>
+      <div style="margin-bottom:8px"><textarea id="editDesc" placeholder="Deskripsi"></textarea></div>
+      <div style="margin-bottom:8px"><input id="editTags" placeholder="Tag (pisah koma)" /></div>
+      <div style="margin-bottom:8px"><input id="replaceFile" type="file" accept="image/*" /></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button id="saveEditBtn" style="background:#ff00cc;color:#fff">Simpan</button>
+        <button id="cancelEditBtn">Batal</button>
+        <button id="deletePhotoBtn" style="background:#c0392b;color:#fff;margin-left:auto">Hapus Foto</button>
+      </div>
+    </div>
+  </div>
 
   <script type="module" src="admin.js"></script>
 </body>
