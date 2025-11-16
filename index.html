@@ -1,108 +1,173 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-    <meta name="google-site-verification" content="nXqtMll6SIo6-yq5nHZaJ6oK8wiPsbmT1PZQ_TOfNhU" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kelas 11 Desain Permodelan dan Informasi Bangunan 2</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kelas 11 DPIB 2 — 27</title>
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <meta name="robots" content="index,follow">
 </head>
-<body>
-    <header>
-        <img src="images/logo/logo.png" alt="logo SMKN 1 KEDIRI">
-        <h1>Kelas 11 Desain Permodelan dan Informasi Bangunan 2</h1>
-        <nav>
-            <ul>
-                <li><a href="#galeri">Galeri</a></li><li><a href="#confess">Pesan</a></li>
-                
-                <li><a href="#profile">Profil Kelas</a></li>
-                <li><a href="#news">Berita</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section id="countdown" class="hidden">
-  <h2>Masuk Sekolah Dalam:</h2>
-  <div class="timer">
-    <span id="days">00</span> hari
-    <span id="hours">00</span> jam
-    <span id="minutes">00</span> menit
-    <span id="seconds">00</span> detik
-  </div>
-    </section>
-    
-<section id="galeri">
-     
-     <h2>Galeri</h2> <br>
-     <button id="toggleButton">Buka Galeri</button>
-    <div id="gallery"class="hidden">
+<body class="site-dark">
 
-            
-    </div>
-</section>
-        
-    <section id="confess">
-        <h2>Kirim Pesan Untuk Kelas Kami</h2>
-        <form id="confessForm">
-            <label for="sender">Pengirim:</label>
-            <input type="text" id="sender" name="sender" required>
-            <label for="recipient">Tujuan:</label>
-            <input type="text" id="recipient" name="recipient" required>
-            <label for="message">Pesan:</label>
-            <textarea id="message" name="message" required></textarea>
-
-            <button type="submit">Kirim</button>
-        </form>
-         <button id="toggleMessage">Buka Pesan</button>
-        <div id="confessMessages" class="hide"> 
-            <!-- Pesan confess akan ditampilkan di sini -->
+  <!-- TOPBAR -->
+  <header class="site-topbar" role="banner">
+    <div class="container topbar-inner">
+      <div class="brand" id="brand">
+        <img src="assets/logo.png" alt="logo" class="logo" onerror="this.style.display='none'">
+        <div class="brand-text">
+          <div class="title">Kelas 11 DPIB 2</div>
+          <div class="subtitle">Angkatan 2027 — SMKN 1 Kediri</div>
         </div>
+      </div>
+
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <button id="btnGalleryFilter" class="btn ghost small" title="Filter galeri"><i data-feather="filter"></i></button>
+        <button id="btnStory" class="btn" title="Start story mode">Story ▶</button>
+        <button id="themeToggle" class="btn ghost small" title="Toggle theme"><i data-feather="moon"></i></button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero" class="hero" aria-label="Hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <h1 id="heroTitle">Kelas 11 DPIB 2</h1>
+        <p id="heroSubtitle">Kenangan, berita, dan galeri — semuanya di sini.</p>
+        <div class="hero-actions">
+          <a id="btnScrollGallery" class="btn">Lihat Galeri</a>
+          <a id="btnScrollMemories" class="btn ghost">Memories</a>
+        </div>
+      </div>
+
+      <div class="hero-meta">
+        <div class="class-profile card">
+          <h4>Profil Kelas</h4>
+          <ul class="profile-list">
+            <li>Ketua: <a id="linkKetua" href="#" target="_blank">—</a></li>
+            <li>Wakil Ketua: <a id="linkWakil" href="#" target="_blank">—</a></li>
+            <li>Wali Kelas: <a id="linkWali" href="#" target="_blank">—</a></li>
+            <li>Jumlah Siswa: <span id="classCount">—</span></li>
+            <li>Sekolah: <a id="linkSchool" href="#" target="_blank">SMKN 1 Kediri</a></li>
+          </ul>
+        </div>
+
+        <div class="hero-events card">
+          <h4>Coming Up</h4>
+          <div id="heroCountdown" class="countdown muted small">—</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- NEWS -->
+    <section id="news" class="section container" aria-labelledby="newsHeading">
+      <h2 id="newsHeading">Berita Terbaru</h2>
+      <div id="newsList" class="news-grid" role="list"></div>
     </section>
 
-    <section id="profile">
-        <h2>Profil Kelas</h2>
-        <p>Berikut adalah struktur kelas 11 Desain Permodelan dan Informasi Bangunan:</p>
-        <ul>
-            <li><strong>Ketua Kelas:</strong> Samuel Panji Truna Mahaja Surya Sata <a href="https://www.instagram.com/samuelpanji1">Instagram</a></li>
-            <li><strong>Wakil Ketua Kelas:</strong> Aulia Pandu Eka Putri <a href="https://www.instagram.com/aullpoetr">Instagram</a></li>
-            <li><strong>Wali Kelas:</strong> Netty Tri Wahyuni</li>
-            <li><strong>Part Of:</strong> <a href="https://smkn1kediri.sch.id/">SMKN 1 KEDIRI</a></li>
-            <li><strong>Akun Instagram:</strong> <a href="https://www.instagram.com/twodpib10.smeksa_?igsh=eXloMzd3ZGJpNGtx">Instagram</a></li>
-            <li><strong>Materi untuk belajar:</strong> <a href="https://materidpib2smeksa.netlify.app">Materi</a></li>
-        </ul>
+    <!-- EVENTS -->
+    <section id="events" class="section container" aria-labelledby="eventsHeading">
+      <h2 id="eventsHeading">Events & Countdown</h2>
+      <div id="eventsList" class="events-row" role="list"></div>
     </section>
 
-    <section id="news">
-        <h2>Berita Kelas</h2>
-        <ul>
-            <li><a href="#">Diduga karena losestreak, Likacuk Amuk Warga Sekitar</a>
-            <img src="images/berita1.jpg" alt="gambar berita 1">
-            </li>
-            <li><a href="#">Ujian bengkel tanggal 10 jangan lupa belajar</a>
-            <img src="images/berita2.jpg" alt="gambar berita 2">
-            <li><a href="#">Karena Ujian Bengkel Selama 6 Jam, Satu Kelas DPIB 2 Mendadak Jadi Likacuk</a>
-            </li>
-        </ul>
+    <!-- GALLERY -->
+    <section id="gallery" class="section container" aria-labelledby="galleryHeading">
+      <div class="section-head">
+        <h2 id="galleryHeading">Galeri</h2>
+        <div class="gallery-controls">
+          <input id="gallerySearch" class="input" placeholder="Cari judul atau deskripsi..." aria-label="Cari galeri">
+          <select id="galleryTagFilter" class="input" aria-label="Filter tag">
+            <option value="">Semua tag</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="galleryGrid" class="pinterest-grid" aria-live="polite"></div>
+
+      <div class="pager-row">
+        <button id="loadMoreBtn" class="btn">Muat Lebih</button>
+        <div id="pageInfo" class="muted small"></div>
+      </div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 11 DPIB 2 SMK Negeri 1 Kota Kediri. Semua hak dilindungi.</p>
-    </footer>
+    <!-- MEMORIES -->
+    <section id="memories" class="section container memories-section" aria-labelledby="memoriesHeading">
+      <h2 id="memoriesHeading">Memories</h2>
 
-    <!-- Mengimpor Firebase Config -->
-    <script type="module" src="config.js"></script>
-    <!-- Mengimpor JavaScript utama untuk menangani logika Confess -->
-    <script type="module" src="confess.js"></script>
-    <!-- Mengimpor Script tambahan -->
-    <script type="module" src="script.js"></script>
-    <script>
-        
-    </script>
-    <!-- Popup Image -->
-<div id="popup" class="popup">
-  <span class="popup-close">&times;</span>
-  <img class="popup-image" src="" alt="Popup Image">
-</div>
+      <div class="memories-layout">
+        <aside class="film-strip card" id="filmStrip" aria-label="Film strip memories"></aside>
+
+        <section class="memory-detail card" id="memoryDetail" aria-live="polite">
+          <div class="mem-head">
+            <div id="memoryTitle" class="mem-title">Pilih memory</div>
+            <div id="memoryMeta" class="muted small">—</div>
+          </div>
+
+          <div id="memPreviewContainer"></div>
+
+          <p id="memoryDesc" class="mem-desc muted">Klik sebuah memory di pita film untuk melihat detil.</p>
+
+          <div id="memoryThumbs" class="mem-thumbs" aria-label="Thumbnail photos"></div>
+
+          <div class="mem-actions">
+            <button id="openMemGallery" class="btn ghost">Buka semua foto</button>
+            <button id="playStoryBtn" class="btn">Play Memory</button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div id="footerText">© Kelas 11 DPIB 2 — Angkatan 2027</div>
+      <div class="footer-links">
+        <a id="linkInstagram" href="#" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- POPUP CINEMATIC -->
+  <div id="popup" class="popup hide" aria-hidden="true" role="dialog" aria-label="Photo viewer">
+    <button id="popupClose" class="popup-close" aria-label="Tutup">×</button>
+    <div class="popup-inner">
+      <img id="popupImg" src="" alt="Foto besar">
+      <div id="popupMeta" class="popup-meta muted small"></div>
+      <div class="popup-controls">
+        <button id="popupPrev" class="btn ghost small" aria-label="Sebelumnya">◀</button>
+        <button id="popupNext" class="btn ghost small" aria-label="Selanjutnya">▶</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTER MODAL -->
+  <div id="filterModal" class="modal hide" aria-hidden="true" role="dialog" aria-label="Filter tags">
+    <div class="modal-card">
+      <h3>Filter Tag</h3>
+      <div id="tagChecklist" class="tag-checklist"></div>
+      <div class="modal-actions" style="margin-top:12px;display:flex;justify-content:flex-end;gap:8px">
+        <button id="applyFilter" class="btn">Terapkan</button>
+        <button id="closeFilter" class="btn ghost">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script type="module" src="./config.js"></script>
+  <script type="module" src="./script.js"></script>
+  <script>document.addEventListener('DOMContentLoaded',()=>{if(window.feather)feather.replace();});</script>
 </body>
 </html>

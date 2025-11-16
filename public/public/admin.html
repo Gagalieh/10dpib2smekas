@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Panel - 11 DPIB 2</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <main class="container">
+    <header style="display:flex;justify-content:space-between;align-items:center;">
+      <h1>Admin Panel — Kelas 11 DPIB 2</h1>
+      <button id="logoutBtn" class="hidden">Logout</button>
+    </header>
+
+    <section id="authSection">
+      <h2>Login Admin</h2>
+      <form id="loginForm">
+        <input id="email" name="email" type="email" placeholder="Email admin" required />
+        <input id="password" name="password" type="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+    </section>
+
+    <section id="panel" class="hidden">
+      <h2>Upload Foto Galeri</h2>
+      <form id="uploadForm">
+        <input id="photoTitle" placeholder="Judul foto (opsional)" />
+        <textarea id="photoDesc" placeholder="Deskripsi (opsional)"></textarea>
+        <input id="photoTags" placeholder="Tag (pisah koma), contoh: fotbar,aib,indra" />
+        <input id="photoFile" type="file" accept="image/*" required />
+        <button type="submit">Upload Foto</button>
+      </form>
+
+      <hr />
+
+      <h2>Buat Berita</h2>
+      <form id="newsForm">
+        <input id="newsTitle" placeholder="Judul berita" required />
+        <textarea id="newsContent" placeholder="Isi berita" required></textarea>
+        <input id="newsTags" placeholder="Tag berita (pisah koma)" />
+        <input id="newsImage" type="file" accept="image/*" />
+        <button type="submit">Publikasikan Berita</button>
+      </form>
+
+      <hr />
+
+      <h2>Tag Manager</h2>
+      <div style="display:flex;gap:8px;align-items:center">
+        <input id="newTagInput" placeholder="Tambah tag baru" />
+        <button id="addTagBtn">Tambah Tag</button>
+      </div>
+      <div id="globalTagsList" style="margin-top:8px"></div>
+
+      <hr />
+
+      <h2>Daftar Foto (klik Edit untuk ubah)</h2>
+      <div style="display:flex;gap:8px;margin-bottom:8px;">
+        <input id="filterTags" placeholder="Filter tag (pisah koma)" />
+        <button id="applyFilter">Terapkan Filter</button>
+      </div>
+      <div id="photosList"></div>
+
+      <hr />
+
+      <h2>Daftar Berita</h2>
+      <div id="newsList"></div>
+    </section>
+
+    <div id="status" style="margin-top:14px;color:#fff"></div>
+  </main>
+
+  <!-- Edit modal -->
+  <div id="editModal" style="display:none;position:fixed;inset:0;justify-content:center;align-items:center;background:rgba(0,0,0,0.6);z-index:1600">
+    <div style="background:#0b1220;padding:16px;border-radius:8px;width:90%;max-width:600px;color:#fff">
+      <h3>Edit Foto</h3>
+      <div style="margin-bottom:8px"><input id="editTitle" placeholder="Judul" /></div>
+      <div style="margin-bottom:8px"><textarea id="editDesc" placeholder="Deskripsi"></textarea></div>
+      <div style="margin-bottom:8px"><input id="editTags" placeholder="Tag (pisah koma)" /></div>
+      <div style="margin-bottom:8px"><input id="replaceFile" type="file" accept="image/*" /></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button id="saveEditBtn" style="background:#ff00cc;color:#fff">Simpan</button>
+        <button id="cancelEditBtn">Batal</button>
+        <button id="deletePhotoBtn" style="background:#c0392b;color:#fff;margin-left:auto">Hapus Foto</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

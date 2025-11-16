@@ -1,91 +1,331 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Admin Panel - 11 DPIB 2</title>
-  <link rel="stylesheet" href="admin.css" />
+  <title>Admin — Kelas 11 DPIB 2</title>
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="admin.css">
+
+  <meta name="robots" content="noindex,nofollow">
 </head>
-<body>
-  <main class="container">
-    <header style="display:flex;justify-content:space-between;align-items:center;">
-      <h1>Admin Panel — Kelas 11 DPIB 2</h1>
-      <button id="logoutBtn" class="hidden">Logout</button>
-    </header>
+<body class="admin-dark">
 
-    <section id="authSection">
-      <h2>Login Admin</h2>
-      <form id="loginForm">
-        <input id="email" name="email" type="email" placeholder="Email admin" required />
-        <input id="password" name="password" type="password" placeholder="Password" required />
-        <button type="submit">Login</button>
-      </form>
-    </section>
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <button id="hamburger" class="hamburger" aria-label="Toggle menu">
+      <i data-feather="menu"></i>
+    </button>
+    <div class="topbar-title">Admin Panel — Kelas 11 DPIB 2</div>
+    <div class="topbar-actions">
+      <button id="openLoginBtn" class="btn ghost">Login</button>
+      <button id="logoutBtn" class="btn ghost" style="display:none">Logout</button>
+    </div>
+  </header>
 
-    <section id="panel" class="hidden">
-      <h2>Upload Foto Galeri</h2>
-      <form id="uploadForm">
-        <input id="photoTitle" placeholder="Judul foto (opsional)" />
-        <textarea id="photoDesc" placeholder="Deskripsi (opsional)"></textarea>
-        <input id="photoTags" placeholder="Tag (pisah koma), contoh: fotbar,aib,indra" />
-        <input id="photoFile" type="file" accept="image/*" required />
-        <button type="submit">Upload Foto</button>
-      </form>
+  <div class="layout">
 
-      <hr />
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+      <nav class="menu">
 
-      <h2>Buat Berita</h2>
-      <form id="newsForm">
-        <input id="newsTitle" placeholder="Judul berita" required />
-        <textarea id="newsContent" placeholder="Isi berita" required></textarea>
-        <input id="newsTags" placeholder="Tag berita (pisah koma)" />
-        <input id="newsImage" type="file" accept="image/*" />
-        <button type="submit">Publikasikan Berita</button>
-      </form>
+        <div class="menu-section">
+          <div class="menu-item" data-panel="panelDashboard">
+            <i data-feather="grid"></i><span>Dashboard</span>
+          </div>
+        </div>
 
-      <hr />
+        <div class="menu-section">
+          <div class="menu-item" data-panel="panelAddPhoto">
+            <i data-feather="upload-cloud"></i><span>Tambah Foto</span>
+          </div>
+          <div class="menu-item" data-panel="panelManagePhotos">
+            <i data-feather="image"></i><span>Kelola Foto</span>
+          </div>
+          <div class="menu-item" data-panel="panelTags">
+            <i data-feather="tag"></i><span>Tags</span>
+          </div>
+        </div>
 
-      <h2>Tag Manager</h2>
-      <div style="display:flex;gap:8px;align-items:center">
-        <input id="newTagInput" placeholder="Tambah tag baru" />
-        <button id="addTagBtn">Tambah Tag</button>
+        <div class="menu-section">
+          <div class="menu-item" data-panel="panelNews">
+            <i data-feather="file-text"></i><span>News</span>
+          </div>
+          <div class="menu-item" data-panel="panelEvents">
+            <i data-feather="clock"></i><span>Events</span>
+          </div>
+          <div class="menu-item" data-panel="panelMemories">
+            <i data-feather="film"></i><span>Memories</span>
+          </div>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-item" data-panel="panelSiteSettings">
+            <i data-feather="settings"></i><span>Site Settings</span>
+          </div>
+          <div class="menu-item" data-panel="panelStorage">
+            <i data-feather="database"></i><span>Storage</span>
+          </div>
+          <div class="menu-item" data-panel="panelHelp">
+            <i data-feather="help-circle"></i><span>Help</span>
+          </div>
+        </div>
+
+      </nav>
+
+      <div class="sidebar-footer">
+        <div id="statusSummary" class="status-summary">Status: Ready</div>
       </div>
-      <div id="globalTagsList" style="margin-top:8px"></div>
+    </aside>
 
-      <hr />
+    <!-- MAIN -->
+    <main class="main">
 
-      <h2>Daftar Foto (klik Edit untuk ubah)</h2>
-      <div style="display:flex;gap:8px;margin-bottom:8px;">
-        <input id="filterTags" placeholder="Filter tag (pisah koma)" />
-        <button id="applyFilter">Terapkan Filter</button>
-      </div>
-      <div id="photosList"></div>
+      <!-- DASHBOARD -->
+      <section id="panelDashboard" class="panel">
+        <div class="panel-grid">
+          <div class="card stat"><div class="stat-title">Photos</div><div id="statPhotos" class="stat-value">—</div></div>
+          <div class="card stat"><div class="stat-title">News</div><div id="statNews" class="stat-value">—</div></div>
+          <div class="card stat"><div class="stat-title">Events</div><div id="statEvents" class="stat-value">—</div></div>
+          <div class="card stat"><div class="stat-title">Memories</div><div id="statMemories" class="stat-value">—</div></div>
 
-      <hr />
+          <div class="card full">
+            <h3>Quick Upload</h3>
+            <div class="small muted">Upload cepat, tanpa detail</div>
+            <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+              <input id="quickFile" type="file" accept="image/*">
+              <button id="quickUploadBtn" class="btn">Upload</button>
+            </div>
+          </div>
 
-      <h2>Daftar Berita</h2>
-      <div id="newsList"></div>
-    </section>
+          <div class="card full">
+            <h3>Storage</h3>
+            <div class="muted small">Photos <span id="storagePhotosText">—</span></div>
+            <div class="progress small"><div id="storagePhotosBar" class="bar"></div></div>
 
-    <div id="status" style="margin-top:14px;color:#fff"></div>
-  </main>
+            <div style="height:10px"></div>
 
-  <!-- Edit modal -->
-  <div id="editModal" style="display:none;position:fixed;inset:0;justify-content:center;align-items:center;background:rgba(0,0,0,0.6);z-index:1600">
-    <div style="background:#0b1220;padding:16px;border-radius:8px;width:90%;max-width:600px;color:#fff">
-      <h3>Edit Foto</h3>
-      <div style="margin-bottom:8px"><input id="editTitle" placeholder="Judul" /></div>
-      <div style="margin-bottom:8px"><textarea id="editDesc" placeholder="Deskripsi"></textarea></div>
-      <div style="margin-bottom:8px"><input id="editTags" placeholder="Tag (pisah koma)" /></div>
-      <div style="margin-bottom:8px"><input id="replaceFile" type="file" accept="image/*" /></div>
-      <div style="display:flex;gap:8px;justify-content:flex-end">
-        <button id="saveEditBtn" style="background:#ff00cc;color:#fff">Simpan</button>
-        <button id="cancelEditBtn">Batal</button>
-        <button id="deletePhotoBtn" style="background:#c0392b;color:#fff;margin-left:auto">Hapus Foto</button>
+            <div class="muted small">News <span id="storageNewsText">—</span></div>
+            <div class="progress small"><div id="storageNewsBar" class="bar"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADD PHOTO -->
+      <section id="panelAddPhoto" class="panel hide">
+        <div class="panel-head">
+          <h2>Tambah Foto — Batch</h2>
+          <div class="small muted">Upload banyak foto sekaligus</div>
+        </div>
+
+        <div class="card">
+          <label class="input-file">
+            <input id="photoFiles" type="file" accept="image/*" multiple>
+            <div class="file-label">Klik untuk memilih (multiple)</div>
+          </label>
+
+          <div style="margin-top:12px">
+            <button id="prepareBatch" class="btn">Muat Detail</button>
+          </div>
+        </div>
+
+        <div id="batchDetail" class="batch-detail"></div>
+      </section>
+
+      <!-- MANAGE PHOTOS -->
+      <section id="panelManagePhotos" class="panel hide">
+        <div class="panel-head">
+          <h2>Kelola Foto</h2>
+
+          <div class="controls-row">
+
+            <div class="input-row">
+              <input id="manageSearch" class="input" placeholder="Cari judul atau deskripsi">
+              <select id="manageFilterTag" class="input"></select>
+              <button id="manageSearchBtn" class="btn">Cari</button>
+              <button id="manageClearBtn" class="btn ghost">Reset</button>
+            </div>
+
+            <div class="bulk-actions">
+              <button id="bulkSelectToggle" class="btn ghost">Bulk Select</button>
+              <button id="bulkTagBtn" class="btn ghost">Bulk Tag</button>
+              <button id="bulkDeleteBtn" class="btn ghost danger">Hapus Banyak</button>
+            </div>
+
+          </div>
+        </div>
+
+        <div id="managePhotosList" class="grid-photos"></div>
+
+        <div id="managePhotosPager" class="pager hidden">
+          <button id="managePrev" class="btn ghost">Prev</button>
+          <div id="managePageInfo" class="small muted"></div>
+          <button id="manageNext" class="btn ghost">Next</button>
+        </div>
+      </section>
+
+      <!-- TAGS -->
+      <section id="panelTags" class="panel hide">
+        <div class="panel-head"><h2>Tags</h2></div>
+
+        <div class="card">
+          <div style="display:flex;gap:8px">
+            <input id="newTagInput" class="input" placeholder="Nama tag">
+            <button id="addTagBtn" class="btn">Tambah</button>
+          </div>
+        </div>
+
+        <div id="tagListArea" class="tag-list card"></div>
+      </section>
+
+      <!-- NEWS -->
+      <section id="panelNews" class="panel hide">
+        <div class="panel-head"><h2>News</h2></div>
+
+        <div class="card">
+          <input id="newsTitle" class="input" placeholder="Judul">
+          <textarea id="newsContent" class="input" rows="6" placeholder="Isi berita"></textarea>
+
+          <label class="input-file small">
+            <input id="newsCover" type="file" accept="image/*">
+            <div class="file-label">Cover (opsional)</div>
+          </label>
+
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button id="addNewsBtn" class="btn">Tambah</button>
+            <button id="clearNewsBtn" class="btn ghost">Reset</button>
+          </div>
+        </div>
+
+        <div id="newsListArea" class="list-vertical card"></div>
+      </section>
+
+      <!-- EVENTS -->
+      <section id="panelEvents" class="panel hide">
+        <div class="panel-head"><h2>Events</h2></div>
+
+        <div class="card">
+          <input id="eventTitle" class="input" placeholder="Judul event">
+          <input id="eventDate" class="input" type="date">
+
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button id="addEventBtn" class="btn">Tambah</button>
+            <button id="clearEventBtn" class="btn ghost">Reset</button>
+          </div>
+        </div>
+
+        <div id="eventsListArea" class="list-vertical card"></div>
+      </section>
+
+      <!-- MEMORIES -->
+      <section id="panelMemories" class="panel hide">
+        <div class="panel-head"><h2>Memories</h2></div>
+
+        <!-- ADD MEMORY -->
+        <div class="card">
+          <input id="memoryTitle" class="input" placeholder="Judul memory">
+          <textarea id="memoryDesc" class="input" rows="3" placeholder="Deskripsi singkat"></textarea>
+
+          <label class="input-file small">
+            <input id="memoryFiles" type="file" accept="image/*" multiple>
+            <div class="file-label">Pilih foto memory</div>
+          </label>
+
+          <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
+            <input id="memoryDate" class="input" type="date" style="width:180px">
+            <input id="memoryOrder" class="input" type="number" placeholder="Urut (angka)" style="width:130px">
+            <button id="addMemoryBtn" class="btn">Tambah Memory</button>
+            <button id="clearMemoryBtn" class="btn ghost">Reset</button>
+          </div>
+        </div>
+
+        <!-- MANAGE MEMORY -->
+        <div class="card" style="margin-top:16px">
+          <h3 style="margin-bottom:10px">Kelola Memories</h3>
+          <div id="memoriesAdminList" class="list-vertical"></div>
+        </div>
+
+      </section>
+
+      <!-- SITE SETTINGS -->
+      <section id="panelSiteSettings" class="panel hide">
+        <div class="panel-head"><h2>Site Settings</h2></div>
+
+        <div class="card">
+          <h4>Hero</h4>
+          <input id="siteHeroTitle" class="input" placeholder="Hero title">
+          <input id="siteHeroSubtitle" class="input" placeholder="Hero subtitle">
+
+          <label class="input-file small">
+            <input id="siteHeroImage" type="file" accept="image/*">
+            <div class="file-label">Hero image</div>
+          </label>
+
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button id="saveHeroBtn" class="btn">Simpan</button>
+            <button id="resetHeroBtn" class="btn ghost">Reset</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h4>Footer</h4>
+          <textarea id="siteFooterText" class="input" rows="2" placeholder="Footer text"></textarea>
+
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button id="saveFooterBtn" class="btn">Simpan</button>
+            <button id="resetFooterBtn" class="btn ghost">Reset</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STORAGE -->
+      <section id="panelStorage" class="panel hide">
+        <div class="panel-head"><h2>Storage Monitor</h2></div>
+
+        <div class="card">
+          <div class="muted small">Photos</div>
+          <div class="progress small"><div id="storagePhotosBar" class="bar"></div></div>
+          <div class="small muted" style="margin-top:4px">Usage: <span id="storagePhotosText">—</span></div>
+
+          <div style="height:12px"></div>
+
+          <div class="muted small">News</div>
+          <div class="progress small"><div id="storageNewsBar" class="bar"></div></div>
+        </div>
+      </section>
+
+      <!-- HELP -->
+      <section id="panelHelp" class="panel hide">
+        <div class="panel-head"><h2>Help</h2></div>
+        <div id="helpContent" class="card help-content"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- LOGIN OVERLAY -->
+  <div id="loginOverlay" class="overlay hide" aria-hidden="true">
+    <div class="login-card card">
+      <button id="loginCloseBtn" class="btn ghost small close">×</button>
+      <h3>Admin Login</h3>
+      <input id="loginEmail" class="input" placeholder="Email">
+      <input id="loginPassword" class="input" placeholder="Password" type="password">
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button id="loginBtn" class="btn">Masuk</button>
       </div>
     </div>
   </div>
 
-  <script type="module" src="admin.js"></script>
+  <script type="module" src="./config.js"></script>
+  <script type="module" src="./admin.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => { if (window.feather) feather.replace(); });
+  </script>
+
 </body>
 </html>

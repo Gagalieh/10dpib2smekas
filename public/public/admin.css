@@ -1,0 +1,25 @@
+/* admin.css */
+:root{--bg:#071025;--card:#0b1220;--accent:#ff00cc;--text:#f7f7fb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,Arial, sans-serif;background:linear-gradient(180deg,#071025,#071026);color:var(--text);min-height:100vh;padding:20px}
+.container{max-width:960px;margin:0 auto;background:var(--card);padding:20px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.6)}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+h1{font-size:1.2rem;color:var(--accent);margin-bottom:8px}
+h2{font-size:1rem;color:var(--accent);margin:14px 0}
+input,textarea,button,select{width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:#071426;color:var(--text);font-size:0.95rem}
+textarea{min-height:100px;resize:vertical}
+button{background:var(--accent);color:#fff;border:none;cursor:pointer;font-weight:700;padding:10px;border-radius:8px}
+button[disabled]{opacity:0.6;cursor:not-allowed}
+.hidden{display:none}
+.small{font-size:0.85rem;color:#b7b7c7}
+.flex-row{display:flex;gap:8px}
+.flex-row > *{flex:1}
+#photosList .item,#newsList .item{background:#06101a;padding:12px;border-radius:10px;margin-bottom:10px;color:#e9e9ee;display:flex;gap:12px;align-items:flex-start}
+#photosList .item img,#newsList .item img{width:120px;height:auto;border-radius:8px;object-fit:cover}
+.item .meta{flex:1}
+.tag{display:inline-block;padding:4px 8px;border-radius:999px;background:rgba(255,0,204,0.12);color:var(--accent);margin-right:6px;font-size:0.8rem}
+.status{margin-top:10px;color:#fff}
+@media (max-width:700px){
+  #photosList .item,#newsList .item{flex-direction:column;align-items:stretch}
+  #photosList .item img,#newsList .item img{width:100%;height:auto}
+}
